@@ -23,7 +23,7 @@ const HackathonSection = () => {
 
       <VStack zIndex={1} spacing={[4, 6, 8]} align="center">
 
-        <Heading as="h1" color="#DAA520">
+        <Heading as="h1" color="#DAA520" maxW="80%">
         Hackathons & Competitions
         </Heading>
 
@@ -33,7 +33,7 @@ const HackathonSection = () => {
           maxW="80%"
           textAlign="center"
         >
-          A list of hackathons and competition that I have participated in
+          A list of hackathons and competitions that I have participated in
         </Text>
 
         {/* Step 2: Map over the hackathons array */}
@@ -46,7 +46,7 @@ const HackathonSection = () => {
               background="#1E1E1E"
               boxShadow="md"
               color="white"
-              minW="400px"
+              minW={["100%", "300px", "400px"]}
             >
               <Heading size="md" mb={2} color="#DAA520">
                 {hackathon.title}
