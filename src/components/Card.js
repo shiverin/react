@@ -7,33 +7,52 @@ const Card = ({ title, description, imageSrc, url}) => {
     //console.log("Card received imageSrc:", imageSrc);
   return (
     <VStack
-      key={title}
-      color="black"
+color="black"
       backgroundColor="white"
-      boxShadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+      // Base glow (default state)
+      boxShadow="0 0 10px rgba(254, 255, 247, 1)"
       _hover={{
-        boxShadow: "0 8px 20px rgba(0, 0, 0, 0.5)",  // Hover effect for depth
-        borderColor: "#B8860B",  // Slightly darker gold border on hover
+        // Stronger glow on hover
+        boxShadow: "0 0 15px rgba(206, 219, 28, 0.7), 0 0 25px rgba(218, 165, 32, 0.6)",
+        transform: "scale(1.02)",
+        transition: "all 0.3s ease-in-out",
       }}
       overflow="hidden"
       justifyContent="space-between"
-      border="5px solid #DAA520"
-      borderRadius="12px"
+      borderRadius="12px" // Transparent to allow glow-only effect
+      backgroundClip="padding-box"
+      transition="box-shadow 0.3s ease-in-out"
+      spacing={0} // Optional: for tighter layout control
+      minH={{ base: "400px", md: "auto" }}  // Adjust values as needed
+      height="600px"
     >
-      <Box>
+      <Box 
+      display="flex"
+      flexDirection="column"
+      height="100%"
+      flex="1"
+      overflow="hidden"
+      >
+      <Box flex="1" height="100%"
+            overflow="hidden">
       <Image
       src={imageSrc}
       alt="Card Image"
       width="100%"
-      height="auto" />
+      height="100%"
+      objectFit="cover" 
+ />
+      </Box>
 
-      <Box p="10px"
+      <Box 
+      flex="1"
+      p="10px"
       width="100%"
       height="auto">
         <Heading as="h3" size="md" marginBottom="10px" alignSelf="start"
                           fontSize={{
-                            base: "12px",   // Mobile devices (default screen size)
-                            sm: "10px",     // Small devices like tablets
+                            base: "15px",   // Mobile devices (default screen size)
+                            sm: "16px",     // Small devices like tablets
                             md: "18px",     // Medium devices like laptops
                             lg: "20px",     // Large devices like desktops
                             xl: "22px",     // Extra-large screens
@@ -42,8 +61,8 @@ const Card = ({ title, description, imageSrc, url}) => {
         </Heading>
         <Text marginBottom="10px"
                   fontSize={{
-                    base: "5px",   // Mobile devices (default screen size)
-                    sm: "7px",     // Small devices like tablets
+                    base: "14px",   // Mobile devices (default screen size)
+                    sm: "15px",     // Small devices like tablets
                     md: "16px",     // Medium devices like laptops
                     lg: "16px",     // Large devices like desktops
                     xl: "16px",     // Extra-large screens
@@ -52,7 +71,9 @@ const Card = ({ title, description, imageSrc, url}) => {
           {description}
         </Text>
         </Box>
-        <Link
+
+      </Box>
+              <Link
 
         p="10px"
       width="100%"
@@ -68,7 +89,6 @@ const Card = ({ title, description, imageSrc, url}) => {
       >
           See more <FontAwesomeIcon icon={faArrowRight} />
         </Link>
-      </Box>
   </VStack>);
 };
 

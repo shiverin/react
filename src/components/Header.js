@@ -93,10 +93,10 @@ const Header = () => {
           {/* Nav Links */}
           <nav>
             <HStack spacing={[4, 6, 9]} flexWrap="wrap">
-              <a href="#projects" onClick={handleClick("projects")}>
+              <a href="#projects" onClick={handleClick("projects")} style={{ color: "#DAA520", fontWeight: "bold" }}>
                 Projects
               </a>
-              <a href="#contact-me" onClick={handleClick("contactme")}>
+              <a href="#contact-me" onClick={handleClick("contactme")} style={{ color: "#DAA520", fontWeight: "bold" }}>
                 Contact Me
               </a>
             </HStack>

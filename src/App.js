@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { AlertProvider } from "./context/alertContext";
 import Alert from "./components/Alert";
 import Header from "./components/Header";
+import HackathonSection from "./components/HackathonSection";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <main>
           <Header/>
           <LandingSection />
+          <HackathonSection/>
           <ProjectsSection />
           <ContactMeSection />
           <Footer />

@@ -4,8 +4,8 @@ import FullScreenSection from "./FullScreenSection";
 import myselfImage from "../images/myself.jpg";
 
 const greeting = "Hello there, I'm Shizhen Zhao!";
-const bio1 = "NUS Computer Science undergrad";
-const bio2 = "Python, SQL, C, R, Flask, and React, with a focus on web development and data analysis";
+const bio1 = "NUS Computer Science Y1";
+const bio2 = "Passionate about AI and developing solutions";
 
 const LandingSection = () => {
   const [rotation, setRotation] = useState(0);

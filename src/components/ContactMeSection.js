@@ -51,7 +51,7 @@ const ContactMeSection = () => {
       spacing={8}
       width="100vw"
     >
-      <VStack w="1024px" p={[4, 8, 16, 32]} alignItems="flex-start" w="100%">
+      <VStack w="100%" p={[4, 8, 16, 32]} alignItems="flex-start">
         <Heading as="h1" id="contactme-section" color="#DAA520">
           Contact me
         </Heading>
