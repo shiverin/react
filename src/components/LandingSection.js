@@ -1,14 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Avatar, Heading, VStack, Text, Box } from "@chakra-ui/react";
+import { Avatar, Heading, VStack, Text, Box, Button, HStack } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import FullScreenSection from "./FullScreenSection";
 import myselfImage from "../images/myself.jpg";
-import { colors } from "../theme/constants";
+import { colors, shadows } from "../theme/constants";
 
 const MotionVStack = motion(VStack);
 const MotionAvatar = motion(Avatar);
 const MotionText = motion(Text);
 const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
 const greeting = "Hello there, I'm Shizhen Zhao!";
 const bio1 = "NUS Computer Science Y2";
@@ -152,6 +155,7 @@ const LandingSection = () => {
       <MotionVStack
         zIndex={1}
         spacing={[4, 6, 8]}
+        pt={["12vh", "6vh", "6vh"]}
         align="center"
         variants={containerVariants}
         initial="hidden"
@@ -203,6 +207,40 @@ const LandingSection = () => {
             {bio2}
           </MotionText>
         </Heading>
+
+        {/* CTA Buttons */}
+        <MotionBox
+          variants={itemVariants}
+          mt={4}
+        >
+          <HStack spacing={4} flexWrap="wrap" justify="center">
+            <MotionButton
+              as="a"
+              href="/zhaoshizhen_resume.pdf"
+              download="Shizhen_Zhao_Resume.pdf"
+              size={{ base: "md", md: "lg" }}
+              bg={colors.primary}
+              color={colors.bgDark}
+              fontWeight="bold"
+              px={6}
+              borderRadius="full"
+              leftIcon={<FontAwesomeIcon icon={faFileDownload} />}
+              _hover={{
+                bg: colors.primaryLight,
+                transform: "translateY(-2px)",
+                boxShadow: shadows.glow,
+              }}
+              _active={{
+                transform: "translateY(0)",
+              }}
+              transition="all 0.3s ease"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Download Resume
+            </MotionButton>
+          </HStack>
+        </MotionBox>
 
         {/* Scroll indicator */}
         <MotionBox

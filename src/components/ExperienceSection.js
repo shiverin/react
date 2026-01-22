@@ -204,17 +204,16 @@ const ExperienceCard = ({ experience, index }) => {
             </VStack>
           </HStack>
 
-          {/* Duration Badge */}
+          {/* Duration Badge - Mobile only */}
           <Badge
-            position="absolute"
-            top={4}
-            right={4}
+            display={{ base: "inline-flex", md: "none" }}
             colorScheme="yellow"
             px={3}
             py={1}
             borderRadius="full"
             fontSize="xs"
             fontWeight="bold"
+            mb={4}
           >
             {experience.duration}
           </Badge>
@@ -281,8 +280,33 @@ const ExperienceCard = ({ experience, index }) => {
           </HStack>
         </MotionBox>
 
-        {/* Spacer for alternating layout */}
-        <Box flex="1" maxW="45%" display={{ base: "none", md: "block" }} />
+        {/* Date display on opposite side - Desktop only */}
+        <Flex
+          flex="1"
+          maxW="45%"
+          display={{ base: "none", md: "flex" }}
+          justify={index % 2 === 0 ? "flex-start" : "flex-end"}
+          align="center"
+        >
+          <MotionBox
+            initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Badge
+              colorScheme="yellow"
+              px={4}
+              py={2}
+              borderRadius="full"
+              fontSize="sm"
+              fontWeight="bold"
+              boxShadow={shadows.glow}
+            >
+              {experience.duration}
+            </Badge>
+          </MotionBox>
+        </Flex>
       </Flex>
     </MotionBox>
   );

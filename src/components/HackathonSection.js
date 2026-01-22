@@ -121,7 +121,7 @@ const HackathonSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Challenging myself through competitive programming and innovation challenges
+          Challenging myself through competitive challenges
         </MotionText>
 
         <SimpleGrid
