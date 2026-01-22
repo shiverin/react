@@ -1,99 +1,165 @@
-import { Heading, HStack, Image, Text, VStack, Box, Link } from "@chakra-ui/react";
+import { Heading, Image, Text, VStack, Box, Link } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 import React from "react";
+import { colors, shadows } from "../theme/constants";
 
-const Card = ({ title, description, imageSrc, url}) => {
-    //console.log("Card received imageSrc:", imageSrc);
+const MotionVStack = motion(VStack);
+const MotionBox = motion(Box);
+const MotionImage = motion(Image);
+
+const Card = ({ title, description, imageSrc, url }) => {
   return (
-    <VStack
-color="black"
+    <MotionVStack
+      color="black"
       backgroundColor="white"
-      // Base glow (default state)
-      boxShadow="0 0 10px rgba(254, 255, 247, 1)"
-      _hover={{
-        // Stronger glow on hover
-        boxShadow: "0 0 15px rgba(206, 219, 28, 0.7), 0 0 25px rgba(218, 165, 32, 0.6)",
-        transform: "scale(1.02)",
-        transition: "all 0.3s ease-in-out",
-      }}
+      boxShadow={shadows.card}
       overflow="hidden"
       justifyContent="space-between"
-      borderRadius="12px" // Transparent to allow glow-only effect
+      borderRadius="16px"
       backgroundClip="padding-box"
-      transition="box-shadow 0.3s ease-in-out"
-      spacing={0} // Optional: for tighter layout control
-      minH={{ base: "400px", md: "auto" }}  // Adjust values as needed
-      height="600px"
-    >
-      <Box 
-      display="flex"
-      flexDirection="column"
-      height="100%"
-      flex="1"
-      overflow="hidden"
-      >
-      <Box flex="1" height="100%"
-            overflow="hidden">
-      <Image
-      src={imageSrc}
-      alt="Card Image"
-      width="100%"
-      height="100%"
-      objectFit="cover" 
- />
-      </Box>
-
-      <Box 
-      flex="1"
-      p="10px"
-      width="100%"
-      height="auto">
-        <Heading as="h3" size="md" marginBottom="10px" alignSelf="start"
-                          fontSize={{
-                            base: "15px",   // Mobile devices (default screen size)
-                            sm: "16px",     // Small devices like tablets
-                            md: "18px",     // Medium devices like laptops
-                            lg: "20px",     // Large devices like desktops
-                            xl: "22px",     // Extra-large screens
-                          }}>
-          {title}
-        </Heading>
-        <Text marginBottom="10px"
-                  fontSize={{
-                    base: "14px",   // Mobile devices (default screen size)
-                    sm: "15px",     // Small devices like tablets
-                    md: "16px",     // Medium devices like laptops
-                    lg: "16px",     // Large devices like desktops
-                    xl: "16px",     // Extra-large screens
-                  }}
-        >
-          {description}
-        </Text>
-        </Box>
-
-      </Box>
-              <Link
-
-        p="10px"
-      width="100%"
-      height="auto"
-      href={url} color="teal.500" isExternal
-      fontSize={{
-        base: "10px",   // Mobile devices (default screen size)
-        sm: "10px",     // Small devices like tablets
-        md: "16px",     // Medium devices like laptops
-        lg: "16px",     // Large devices like desktops
-        xl: "16px",     // Extra-large screens
+      spacing={0}
+      minH={{ base: "auto", md: "auto" }}
+      height={{ base: "auto", md: "600px" }}
+      position="relative"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{
+        scale: 1.03,
+        boxShadow: shadows.cardHover,
       }}
+      _before={{
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "3px",
+        background: `linear-gradient(90deg, ${colors.primary}, ${colors.primaryLight}, ${colors.primary})`,
+        opacity: 0,
+        transition: "opacity 0.3s ease",
+      }}
+      _hover={{
+        _before: {
+          opacity: 1,
+        },
+      }}
+    >
+      <Box display="flex" flexDirection="column" height="100%" flex="1" overflow="hidden">
+        <MotionBox 
+          flex={{ base: "none", md: "1" }}
+          height={{ base: "180px", sm: "200px", md: "100%" }}
+          minH={{ base: "180px", sm: "200px", md: "auto" }}
+          overflow="hidden"
+          position="relative"
+        >
+          <MotionImage
+            src={imageSrc}
+            alt={`${title} project screenshot`}
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            loading="lazy"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.4 }}
+          />
+          {/* Gradient overlay */}
+          <Box
+            position="absolute"
+            bottom={0}
+            left={0}
+            right={0}
+            height="50%"
+            background="linear-gradient(to top, rgba(0,0,0,0.3), transparent)"
+            pointerEvents="none"
+          />
+        </MotionBox>
+
+        <Box flex={{ base: "none", md: "1" }} p={{ base: "12px", md: "16px" }} width="100%" height="auto">
+          <Heading
+            as="h3"
+            size="md"
+            marginBottom={{ base: "8px", md: "12px" }}
+            alignSelf="start"
+            fontSize={{
+              base: "14px",
+              sm: "15px",
+              md: "18px",
+              lg: "20px",
+              xl: "22px",
+            }}
+            color={colors.bgDark}
+            position="relative"
+            _after={{
+              content: '""',
+              position: "absolute",
+              bottom: "-4px",
+              left: 0,
+              width: "40px",
+              height: "2px",
+              background: colors.primary,
+              transition: "width 0.3s ease",
+            }}
+            _groupHover={{
+              _after: {
+                width: "60px",
+              },
+            }}
+          >
+            {title}
+          </Heading>
+          <Text
+            marginBottom={{ base: "8px", md: "10px" }}
+            fontSize={{
+              base: "13px",
+              sm: "14px",
+              md: "16px",
+              lg: "16px",
+              xl: "16px",
+            }}
+            color="gray.700"
+            lineHeight="1.5"
+            noOfLines={{ base: 4, md: 5 }}
+          >
+            {description}
+          </Text>
+        </Box>
+      </Box>
+      
+      <Link
+        p={{ base: "12px", md: "16px" }}
+        width="100%"
+        height="auto"
+        href={url}
+        isExternal
+        fontSize={{
+          base: "12px",
+          sm: "13px",
+          md: "16px",
+          lg: "16px",
+          xl: "16px",
+        }}
+        color={colors.primary}
+        fontWeight="semibold"
+        display="flex"
+        alignItems="center"
+        gap="8px"
+        _hover={{
+          color: colors.primaryDark,
+          textDecoration: "none",
+          gap: "12px",
+        }}
+        transition="all 0.3s ease"
+        borderTop="1px solid"
+        borderColor="gray.100"
       >
-          See more <FontAwesomeIcon icon={faArrowRight} />
-        </Link>
-  </VStack>);
+        View Project <FontAwesomeIcon icon={faArrowRight} />
+      </Link>
+    </MotionVStack>
+  );
 };
 
 export default Card;
-
-      //<Link href={card.url} color="teal.500" isExternal>
-        //Visit Site
-      //</Link>

@@ -6,20 +6,24 @@ import Footer from "./components/Footer";
 import { AlertProvider } from "./context/alertContext";
 import Alert from "./components/Alert";
 import Header from "./components/Header";
+import ExperienceSection from "./components/ExperienceSection";
 import HackathonSection from "./components/HackathonSection";
+import BackToTop from "./components/BackToTop";
 
 function App() {
   return (
     <ChakraProvider>
       <AlertProvider>
         <main>
-          <Header/>
+          <Header />
           <LandingSection />
-          <HackathonSection/>
+          <ExperienceSection />
+          <HackathonSection />
           <ProjectsSection />
           <ContactMeSection />
           <Footer />
           <Alert />
+          <BackToTop />
         </main>
       </AlertProvider>
     </ChakraProvider>

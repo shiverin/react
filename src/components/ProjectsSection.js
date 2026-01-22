@@ -1,100 +1,548 @@
-import React from "react";
+import React, { useRef } from "react";
 import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
-import Card from "./Card";
+import { Box, Heading, Text, HStack, VStack, Link, Badge, IconButton, Tooltip } from "@chakra-ui/react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faReact,
+  faPython,
+  faJs,
+  faGolang,
+  faHtml5,
+  faCss3Alt,
+  faNodeJs,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faDatabase,
+  faBrain,
+  faServer,
+  faCode,
+  faRobot,
+  faComments,
+  faFileCode,
+  faChartLine,
+  faArrowRight,
+  faArrowLeft,
+  faExternalLinkAlt,
+  faLaptopCode,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
+import { colors, shadows } from "../theme/constants";
+
+const MotionBox = motion(Box);
+const MotionHeading = motion(Heading);
+const MotionVStack = motion(VStack);
+
+// Tech stack icon mapping
+const techIcons = {
+  react: { icon: faReact, color: "#61DAFB", label: "React" },
+  python: { icon: faPython, color: "#3776AB", label: "Python" },
+  javascript: { icon: faJs, color: "#F7DF1E", label: "JavaScript" },
+  go: { icon: faGolang, color: "#00ADD8", label: "Go" },
+  html: { icon: faHtml5, color: "#E34F26", label: "HTML5" },
+  css: { icon: faCss3Alt, color: "#1572B6", label: "CSS3" },
+  node: { icon: faNodeJs, color: "#339933", label: "Node.js" },
+  database: { icon: faDatabase, color: "#336791", label: "PostgreSQL" },
+  tensorflow: { icon: faBrain, color: "#FF6F00", label: "TensorFlow" },
+  django: { icon: faServer, color: "#092E20", label: "Django" },
+  flask: { icon: faCode, color: "#000000", label: "Flask" },
+  websocket: { icon: faComments, color: "#010101", label: "WebSocket" },
+  ai: { icon: faRobot, color: "#9B59B6", label: "AI/ML" },
+  electron: { icon: faLaptopCode, color: "#47848F", label: "Electron" },
+};
+
+// Project icon mapping
+const projectIcons = {
+  forum: faUsers,
+  messenger: faComments,
+  ai: faBrain,
+  code: faFileCode,
+  finance: faChartLine,
+  robot: faRobot,
+};
 
 const projects = [
   {
-    title: "WhatsApp Clone",
+    title: "GoTalk",
+    subtitle: "Full-Stack Web Forum",
     description:
-      "Developed a full-stack, real-time messaging web app as a single-page application (SPA) using Django, Django Channels, and WebSockets. The app provides reload-free navigation and instant messaging between users, with features like phone number authentication, user search, chat archiving, message read indicators, and profile editing. Deployed on Render with ASGI for real-time communication and integrated with a managed PostgreSQL database on Supabase for robust, scalable backend storage.",
-    getImageSrc: () => require("../images/whatsapp.png"),
+      "A modern Reddit-inspired forum platform enabling users to create communities, share posts, engage in discussions, and discover trending content.",
+    icon: projectIcons.forum,
+    iconBg: "linear-gradient(135deg, #00ADD8 0%, #00758F 100%)",
+    techStack: ["react", "go", "database", "css"],
+    url: "https://github.com/shiverin/GoTalk",
+    featured: true,
+  },
+  {
+    title: "Messenger",
+    subtitle: "Real-time Chat Application",
+    description:
+      "Full-stack messaging SPA with Django Channels & WebSockets. Features include phone auth, chat archiving, read indicators, and profile editing.",
+    icon: projectIcons.messenger,
+    iconBg: "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+    techStack: ["python", "django", "websocket", "database"],
     url: "https://github.com/shiverin/messenger",
+    featured: true,
   },
   {
-    title: "Traffic Sign Classification with CNN using TensorFlow",
+    title: "Traffic Sign CNN",
+    subtitle: "Machine Learning Classifier",
     description:
-      "Developed a convolutional neural network (CNN) using TensorFlow to classify traffic signs from the German Traffic Sign Recognition Benchmark (GTSRB) dataset. The project explored multiple CNN architectures, achieving a top test accuracy of 98.97% by optimizing network depth, dropout regularization, and training parameters.",
-    getImageSrc: () => require("../images/trafficSigns.jpg"),
+      "CNN using TensorFlow achieving 98.97% accuracy on GTSRB dataset through optimized network architecture and dropout regularization.",
+    icon: projectIcons.ai,
+    iconBg: "linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%)",
+    techStack: ["python", "tensorflow", "ai"],
     url: "https://github.com/shiverin/CNNTraffic",
-  },
-    {
-    title: "AI Crossword Solver",
-    description:
-      "Developed an AI crossword puzzle solver using Constraint Satisfaction Problem (CSP) techniques to generate valid crossword solutions from a grid structure and word list. This project applies classical AI search algorithms and heuristics to efficiently explore complex solution spaces.",
-    getImageSrc: () => require("../images/crossword.png"),
-    url: "https://github.com/shiverin/crosswords",
+    featured: true,
   },
   {
-    title: "NimAI",
+    title: "OfflineLeetcode",
+    subtitle: "Competitive Programming App",
     description:
-      "Developed an AI agent that learns to play Nim using Q-learning. Implemented core Q-learning concepts: state-action value functions (Q-values), Q-table updates, and an epsilon-greedy policy balancing exploration and exploitation.",
-    getImageSrc: () => require("../images/nim.png"),
-    url: "https://github.com/shiverin/nimAI",
-  },
-      {
-    title: "TicTacToeAI",
-    description:
-      "This project implements an AI Tic Tac Toe player using the Minimax algorithm with recursive decision-making. The AI evaluates all possible moves to select the optimal action.",
-    getImageSrc: () => require("../images/tictactoe.png"),
-    url: "https://github.com/shiverin/TTTAi",
+      "Electron-based desktop app for offline LeetCode practice. Code anywhere without internet with a clean, distraction-free interface.",
+    icon: projectIcons.code,
+    iconBg: "linear-gradient(135deg, #FFA116 0%, #FF6B00 100%)",
+    techStack: ["react", "electron", "javascript", "python"],
+    url: "https://github.com/shiverin/OfflineLeetcode",
+    featured: false,
   },
   {
-    title: "PageRanker",
-    description: 
-      "Implemented the PageRank algorithm in Python to rank webpages based on link structure. Built a web crawler and computed ranks using both Monte Carlo sampling and iterative matrix methods, applying concepts from probability and graph theory.",
-    getImageSrc: () => require("../images/pagerank.png"),
-    url: "https://github.com/shiverin/pageranker"
-  },
-      {
     title: "PDFiledit",
+    subtitle: "PDF Editor Web App",
     description:
-      "PDFILEdit is a Flask-based web app that enables seamless editing, signing, merging, and converting of PDF files directly in the browser. It leverages session-based file management and dynamic tool rendering based on user uploads.",
-    getImageSrc: () => require("../images/pdfile.jpg"),
+      "Flask-based web app for editing, signing, merging, and converting PDFs directly in the browser with session-based file management.",
+    icon: projectIcons.code,
+    iconBg: "linear-gradient(135deg, #E74C3C 0%, #C0392B 100%)",
+    techStack: ["python", "flask", "html", "css", "javascript"],
     url: "https://github.com/shiverin/PDFILEdit",
+    featured: false,
   },
   {
-    title: "Finance Portfolio App",
+    title: "Finance Portfolio",
+    subtitle: "Stock Trading Simulator",
     description:
-      "Developed a finance app using Python Flask for the backend, linked to a PostgreSQL server on Render. The app features stock quotes, portfolio management, and buy/sell functionality, with basic HTML and CSS for the frontend.",
-    getImageSrc: () => require("../images/finance.png"),
+      "Python Flask finance app with PostgreSQL backend. Features stock quotes, portfolio management, and buy/sell functionality.",
+    icon: projectIcons.finance,
+    iconBg: "linear-gradient(135deg, #2ECC71 0%, #27AE60 100%)",
+    techStack: ["python", "flask", "database", "html", "css"],
     url: "https://github.com/shiverin/finance",
+    featured: false,
   },
 ];
 
+const ProjectCard = ({ project, index }) => {
+  return (
+    <MotionVStack
+      minW={{ base: "300px", md: "380px" }}
+      maxW={{ base: "300px", md: "380px" }}
+      h={{ base: "420px", md: "480px" }}
+      bg={colors.bgCard}
+      borderRadius="24px"
+      overflow="hidden"
+      position="relative"
+      border="1px solid rgba(218, 165, 32, 0.1)"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{
+        y: -8,
+        boxShadow: "0 20px 40px rgba(218, 165, 32, 0.2)",
+        borderColor: "rgba(218, 165, 32, 0.3)",
+      }}
+      _before={{
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "4px",
+        background: project.iconBg,
+        opacity: 0,
+        transition: "opacity 0.3s ease",
+      }}
+      _hover={{
+        _before: { opacity: 1 },
+      }}
+      spacing={0}
+      cursor="pointer"
+      role="group"
+    >
+      {/* Featured Badge */}
+      {project.featured && (
+        <Badge
+          position="absolute"
+          top={4}
+          right={4}
+          bg={colors.primary}
+          color={colors.bgDark}
+          px={3}
+          py={1}
+          borderRadius="full"
+          fontSize="xs"
+          fontWeight="bold"
+          zIndex={2}
+        >
+          Featured
+        </Badge>
+      )}
+
+      {/* Icon Header */}
+      <Box
+        w="100%"
+        h={{ base: "120px", md: "140px" }}
+        background={project.iconBg}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        position="relative"
+        overflow="hidden"
+      >
+        {/* Background pattern */}
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          opacity={0.1}
+          backgroundImage="radial-gradient(circle at 20% 80%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)"
+          backgroundSize="30px 30px"
+        />
+        
+        <MotionBox
+          initial={{ scale: 1 }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ duration: 0.3 }}
+        >
+          <FontAwesomeIcon
+            icon={project.icon}
+            style={{
+              fontSize: "3.5rem",
+              color: "white",
+              filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
+            }}
+          />
+        </MotionBox>
+      </Box>
+
+      {/* Content */}
+      <VStack
+        flex={1}
+        p={{ base: 4, md: 5 }}
+        align="flex-start"
+        spacing={3}
+        w="100%"
+      >
+        {/* Title & Subtitle */}
+        <Box>
+          <Heading
+            as="h3"
+            fontSize={{ base: "lg", md: "xl" }}
+            color={colors.textLight}
+            fontWeight="bold"
+            mb={1}
+          >
+            {project.title}
+          </Heading>
+          <Text
+            fontSize={{ base: "xs", md: "sm" }}
+            color={colors.primary}
+            fontWeight="medium"
+          >
+            {project.subtitle}
+          </Text>
+        </Box>
+
+        {/* Description */}
+        <Text
+          fontSize={{ base: "sm", md: "sm" }}
+          color={colors.textMuted}
+          lineHeight="1.6"
+          noOfLines={3}
+          flex={1}
+        >
+          {project.description}
+        </Text>
+
+        {/* Tech Stack Icons */}
+        <HStack spacing={2} flexWrap="wrap" w="100%">
+          {project.techStack.map((tech) => (
+            <Tooltip
+              key={tech}
+              label={techIcons[tech]?.label}
+              placement="top"
+              hasArrow
+              bg={colors.bgDark}
+              color={colors.primary}
+              fontSize="sm"
+              fontWeight="medium"
+              px={3}
+              py={2}
+              borderRadius="md"
+            >
+              <Box
+                p={2}
+                borderRadius="lg"
+                bg="rgba(255, 255, 255, 0.05)"
+                border="1px solid transparent"
+                _hover={{
+                  bg: "rgba(255, 255, 255, 0.12)",
+                  transform: "translateY(-3px) scale(1.1)",
+                  borderColor: techIcons[tech]?.color,
+                  boxShadow: `0 4px 12px ${techIcons[tech]?.color}40`,
+                }}
+                transition="all 0.25s ease"
+                cursor="pointer"
+              >
+                <FontAwesomeIcon
+                  icon={techIcons[tech]?.icon}
+                  style={{
+                    color: techIcons[tech]?.color,
+                    fontSize: "1.1rem",
+                  }}
+                />
+              </Box>
+            </Tooltip>
+          ))}
+        </HStack>
+
+        {/* View Project Link */}
+        <Link
+          href={project.url}
+          isExternal
+          w="100%"
+          _hover={{ textDecoration: "none" }}
+        >
+          <HStack
+            w="100%"
+            justify="space-between"
+            p={3}
+            borderRadius="12px"
+            bg="rgba(218, 165, 32, 0.1)"
+            _groupHover={{
+              bg: colors.primary,
+            }}
+            transition="all 0.3s ease"
+          >
+            <HStack spacing={2}>
+              <FontAwesomeIcon
+                icon={faGithub}
+                style={{ color: colors.primary }}
+                className="github-icon"
+              />
+              <Text
+                fontSize="sm"
+                fontWeight="semibold"
+                color={colors.primary}
+                _groupHover={{ color: colors.bgDark }}
+              >
+                View on GitHub
+              </Text>
+            </HStack>
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              style={{ color: colors.primary }}
+              className="arrow-icon"
+            />
+          </HStack>
+        </Link>
+      </VStack>
+    </MotionVStack>
+  );
+};
+
 const ProjectsSection = () => {
+  const scrollContainerRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === "left" ? -400 : 400;
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <FullScreenSection
-      backgroundColor=
-      //"#4C5C68"
-      //"#D4AF37"
-      "#121212"
+      backgroundColor={colors.bgDark}
       isDarkBackground
-      p={8}
+      p={{ base: 4, md: 8 }}
       alignItems="flex-start"
-      spacing={8}
+      spacing={{ base: 4, md: 6 }}
+      overflow="hidden"
     >
-      <Heading as="h1" id="projects-section" color="#DAA520">
-        Featured Projects
-      </Heading>
+      {/* Header */}
+      <Box w="100%" maxW="1280px" px={{ base: 0, md: 4 }}>
+        <HStack justify="space-between" align="flex-end" w="100%" mb={2}>
+          <Box>
+            <MotionHeading
+              as="h1"
+              id="projects-section"
+              color={colors.primary}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              fontSize={{ base: "2xl", md: "4xl" }}
+              position="relative"
+              _after={{
+                content: '""',
+                position: "absolute",
+                bottom: "-8px",
+                left: 0,
+                width: "80px",
+                height: "4px",
+                background: `linear-gradient(90deg, ${colors.primary}, transparent)`,
+                borderRadius: "2px",
+              }}
+            >
+              Featured Projects
+            </MotionHeading>
+            <Text
+              color={colors.textMuted}
+              fontSize={{ base: "sm", md: "md" }}
+              mt={4}
+            >
+              Swipe or scroll to explore my work →
+            </Text>
+          </Box>
+
+          {/* Navigation Arrows - Desktop only */}
+          <HStack spacing={2} display={{ base: "none", md: "flex" }}>
+            <IconButton
+              aria-label="Scroll left"
+              icon={<FontAwesomeIcon icon={faArrowLeft} />}
+              onClick={() => scroll("left")}
+              variant="outline"
+              borderColor={colors.primary}
+              color={colors.primary}
+              borderRadius="full"
+              size="lg"
+              _hover={{
+                bg: colors.primary,
+                color: colors.bgDark,
+              }}
+            />
+            <IconButton
+              aria-label="Scroll right"
+              icon={<FontAwesomeIcon icon={faArrowRight} />}
+              onClick={() => scroll("right")}
+              variant="outline"
+              borderColor={colors.primary}
+              color={colors.primary}
+              borderRadius="full"
+              size="lg"
+              _hover={{
+                bg: colors.primary,
+                color: colors.bgDark,
+              }}
+            />
+          </HStack>
+        </HStack>
+      </Box>
+
+      {/* Horizontal Scroll Container */}
       <Box
-        display="grid"
-        gridTemplateColumns={{
-          base: "repeat(1, minmax(0, 1fr))", // mobile
-          md: "repeat(2, minmax(0, 1fr))",   // desktop (>=768px)
-        }}
-        gridGap={8}
+        w="100%"
+        overflow="visible"
       >
-        {projects.map((project) => (
-          <Card
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.getImageSrc()}
-            url={project.url}
+        <HStack
+          ref={scrollContainerRef}
+          spacing={{ base: 4, md: 6 }}
+          overflowX="auto"
+          py={6}
+          px={{ base: 0, md: 4 }}
+          css={{
+            "&::-webkit-scrollbar": {
+              height: "8px",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: colors.bgDarker,
+              borderRadius: "4px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: colors.primary,
+              borderRadius: "4px",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: colors.primaryLight,
+            },
+            scrollbarWidth: "thin",
+            scrollbarColor: `${colors.primary} ${colors.bgDarker}`,
+            scrollSnapType: "x mandatory",
+          }}
+        >
+          {projects.map((project, index) => (
+            <Box key={project.title} scrollSnapAlign="start">
+              <ProjectCard project={project} index={index} />
+            </Box>
+          ))}
+          
+          {/* View All Card */}
+          <MotionVStack
+            minW={{ base: "280px", md: "320px" }}
+            h={{ base: "420px", md: "480px" }}
+            bg="transparent"
+            borderRadius="24px"
+            border="2px dashed rgba(218, 165, 32, 0.3)"
+            justify="center"
+            align="center"
+            spacing={4}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            whileHover={{
+              borderColor: colors.primary,
+              bg: "rgba(218, 165, 32, 0.05)",
+            }}
+            transition={{ duration: 0.3 }}
+            cursor="pointer"
+            as="a"
+            href="https://github.com/shiverin?tab=repositories"
+            target="_blank"
+          >
+            <Box
+              p={4}
+              borderRadius="full"
+              bg="rgba(218, 165, 32, 0.1)"
+            >
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                style={{ fontSize: "2rem", color: colors.primary }}
+              />
+            </Box>
+            <Text color={colors.primary} fontWeight="bold" fontSize="lg">
+              View All Projects
+            </Text>
+            <Text color={colors.textMuted} fontSize="sm" textAlign="center" px={4}>
+              Explore more on GitHub
+            </Text>
+          </MotionVStack>
+        </HStack>
+      </Box>
+
+      {/* Scroll Indicator - Mobile */}
+      <HStack
+        justify="center"
+        w="100%"
+        display={{ base: "flex", md: "none" }}
+        spacing={1}
+        mt={2}
+      >
+        {projects.map((_, index) => (
+          <Box
+            key={index}
+            w={2}
+            h={2}
+            borderRadius="full"
+            bg={index === 0 ? colors.primary : "rgba(218, 165, 32, 0.3)"}
           />
         ))}
-      </Box>
+      </HStack>
     </FullScreenSection>
   );
 };
