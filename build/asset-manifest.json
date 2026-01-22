@@ -1,24 +1,16 @@
 {
   "files": {
-    "main.css": "/build/static/css/main.df6a7eab.css",
-    "main.js": "/build/static/js/main.ef98871e.js",
+    "main.css": "/build/static/css/main.e1f846de.css",
+    "main.js": "/build/static/js/main.913ad6f1.js",
     "static/js/453.61dff875.chunk.js": "/build/static/js/453.61dff875.chunk.js",
-    "static/media/whatsapp.png": "/build/static/media/whatsapp.bb98d06ee045875a7423.png",
-    "static/media/pagerank.png": "/build/static/media/pagerank.7bbbc75f4694823d04f0.png",
     "static/media/myself.jpg": "/build/static/media/myself.a330c1d773f1fddf00d5.jpg",
-    "static/media/crossword.png": "/build/static/media/crossword.d34b3c93120dcbd10b35.png",
-    "static/media/trafficSigns.jpg": "/build/static/media/trafficSigns.6da82fd1260c2c89e33d.jpg",
-    "static/media/tictactoe.png": "/build/static/media/tictactoe.6e19cf6f6cf1575b7fbc.png",
-    "static/media/finance.png": "/build/static/media/finance.f3d29fb06c7174c53dbe.png",
-    "static/media/nim.png": "/build/static/media/nim.638e5917d8922774e409.png",
-    "static/media/pdfile.jpg": "/build/static/media/pdfile.644aff95ecbccfaec1b6.jpg",
     "index.html": "/build/index.html",
-    "main.df6a7eab.css.map": "/build/static/css/main.df6a7eab.css.map",
-    "main.ef98871e.js.map": "/build/static/js/main.ef98871e.js.map",
+    "main.e1f846de.css.map": "/build/static/css/main.e1f846de.css.map",
+    "main.913ad6f1.js.map": "/build/static/js/main.913ad6f1.js.map",
     "453.61dff875.chunk.js.map": "/build/static/js/453.61dff875.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df6a7eab.css",
-    "static/js/main.ef98871e.js"
+    "static/css/main.e1f846de.css",
+    "static/js/main.913ad6f1.js"
   ]
 }
