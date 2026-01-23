@@ -368,6 +368,7 @@ const ProjectsSection = () => {
 
   return (
     <FullScreenSection
+      sectionId="projects-section"
       backgroundColor={colors.bgDark}
       isDarkBackground
       p={{ base: 4, md: 8 }}
@@ -381,7 +382,6 @@ const ProjectsSection = () => {
           <Box>
             <MotionHeading
               as="h1"
-              id="projects-section"
               color={colors.primary}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}

@@ -14,7 +14,7 @@ const MotionBox = motion(Box);
 const MotionButton = motion(Button);
 
 const greeting = "Hello there, I'm Shizhen Zhao!";
-const bio1 = "NUS Computer Science Y2";
+const bio1 = "NUS Computer Science Y1";
 const bio2 = "Passionate about AI and developing solutions";
 
 // Throttle function for scroll performance
@@ -121,6 +121,7 @@ const LandingSection = () => {
       justifyContent="center"
       alignItems="center"
       isDarkBackground
+      isLanding
       backgroundColor={colors.bgDark}
       w="100vw"
       position="relative"
@@ -134,8 +135,8 @@ const LandingSection = () => {
       {/* Background glow effect */}
       <MotionBox
         position="absolute"
-        width="600px"
-        height="600px"
+        width={{ base: "300px", md: "600px" }}
+        height={{ base: "300px", md: "600px" }}
         borderRadius="full"
         background={`radial-gradient(circle, ${colors.primary}15 0%, transparent 70%)`}
         filter="blur(60px)"
@@ -149,14 +150,17 @@ const LandingSection = () => {
           ease: "easeInOut",
         }}
       />
-
-      <Box height={["15vh", "0vh", "0vh"]} />
       
       <MotionVStack
         zIndex={1}
-        spacing={[4, 6, 8]}
-        pt={["12vh", "6vh", "6vh"]}
+        spacing={{ base: 4, md: 6, lg: 8 }}
         align="center"
+        justify="center"
+        flex="1"
+        w="100%"
+        px={4}
+        pt={{ base: 0, sm: "3vh", md: "5vh", lg: "8vh" }}
+        sectionId="landing-section"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -237,14 +241,14 @@ const LandingSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Download Resume
+              Grab My Resume
             </MotionButton>
           </HStack>
         </MotionBox>
 
         {/* Scroll indicator */}
         <MotionBox
-          mt={8}
+          mt={2}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}

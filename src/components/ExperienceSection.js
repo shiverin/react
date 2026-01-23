@@ -315,6 +315,7 @@ const ExperienceCard = ({ experience, index }) => {
 const ExperienceSection = () => {
   return (
     <FullScreenSection
+      sectionId="experience-section"
       justifyContent="center"
       alignItems="center"
       isDarkBackground
@@ -387,7 +388,6 @@ const ExperienceSection = () => {
             </Box>
             <MotionHeading
               as="h2"
-              id="experience-section"
               color={colors.primary}
               fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
               textAlign="center"

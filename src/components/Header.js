@@ -54,13 +54,19 @@ const Header = () => {
     }
   }, [isMobile]);
 
-  const handleClick = (anchor) => () => {
+  const handleClick = (anchor) => (e) => {
+    e.preventDefault();
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
+      // Calculate offset for fixed header (approximately 70px)
+      const headerOffset = 70;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
         behavior: "smooth",
-        block: "start",
       });
     }
     setIsMobileMenuOpen(false);

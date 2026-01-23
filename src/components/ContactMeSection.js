@@ -93,6 +93,7 @@ const ContactMeSection = () => {
 
   return (
     <FullScreenSection
+      sectionId="contactme-section"
       isDarkBackground
       backgroundColor={colors.bgDarker}
       py={16}
@@ -134,7 +135,6 @@ const ContactMeSection = () => {
       >
         <MotionHeading
           as="h1"
-          id="contactme-section"
           color={colors.primary}
           variants={itemVariants}
           position="relative"

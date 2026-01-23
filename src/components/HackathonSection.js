@@ -46,6 +46,7 @@ const HackathonSection = () => {
 
   return (
     <FullScreenSection
+      sectionId="hackathons-section"
       justifyContent="center"
       alignItems="center"
       isDarkBackground
@@ -87,7 +88,6 @@ const HackathonSection = () => {
       >
         <MotionHeading
           as="h1"
-          id="hackathons-section"
           color={colors.primary}
           maxW="80%"
           textAlign="center"
