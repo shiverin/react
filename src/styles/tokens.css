@@ -1,0 +1,32 @@
+:root {
+  --ink: #282231;
+  --ink-soft: #5e5569;
+  --ink-faint: rgba(40, 34, 49, 0.55);
+  --paper: #fffaf8;
+  --white: #ffffff;
+  --lilac: #c9c2f4;
+  --violet: #a797ed;
+  --blush: #e8c7da;
+  --peach: #ffb08a;
+  --coral: #fc8e75;
+  --blue: #a9c9ff;
+  --pink: #ff4ea3;
+  --glass: rgba(255, 255, 255, 0.30);
+  --glass-strong: rgba(255, 255, 255, 0.46);
+  --glass-border: rgba(255, 255, 255, 0.48);
+  --glass-border-dark: rgba(62, 48, 78, 0.12);
+  --shadow-soft: 0 24px 70px rgba(85, 60, 98, 0.16);
+  --shadow-float: 0 36px 90px rgba(89, 57, 105, 0.22);
+  --radius-xl: 42px;
+  --radius-lg: 30px;
+  --radius-md: 22px;
+  --radius-sm: 15px;
+  --page-width: 1440px;
+  --content-width: 1240px;
+  --header-height: 104px;
+  --font-sans: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ease-out: cubic-bezier(0.18, 0.82, 0.22, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --pointer-x: 50vw;
+  --pointer-y: 50vh;
+}
