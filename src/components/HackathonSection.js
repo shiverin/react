@@ -1,219 +1,56 @@
-import React from "react";
-import { VStack, Heading, Text, Box, SimpleGrid, Badge, HStack, Icon } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy, faCode, faBrain } from "@fortawesome/free-solid-svg-icons";
-import FullScreenSection from "./FullScreenSection";
-import { colors, shadows } from "../theme/constants";
+import { hackathon } from "../data/portfolioData";
+import { BrainIcon, SparkIcon, TrophyIcon } from "./Icons";
+import SectionHeading from "./SectionHeading";
 
-const MotionBox = motion(Box);
-const MotionHeading = motion(Heading);
-const MotionText = motion(Text);
-
-const hackathons = [
-  {
-    title: "DSTA BrainHack 2025",
-    achievement: "Semi-finalist",
-    description:
-      "Competed in DSTA's flagship hackathon focusing on defense technology solutions. Developed an AI-powered system utilizing Automatic Speech Recognition (ASR), Computer Vision (CV), Optical Character Recognition (OCR), and Reinforcement Learning (RL) to solve complex real-world challenges.",
-    tags: ["ASR", "Computer Vision", "OCR", "Reinforcement Learning"],
-    icon: faTrophy,
-  },
-];
-
-const HackathonSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
+export default function HackathonSection({ showHeading = true }) {
   return (
-    <FullScreenSection
-      sectionId="hackathons-section"
-      justifyContent="center"
-      alignItems="center"
-      isDarkBackground
-      backgroundColor={colors.bgDark}
-      w="100vw"
-      position="relative"
-      overflow="hidden"
-    >
-      {/* Background decorative elements */}
-      <MotionBox
-        position="absolute"
-        top="10%"
-        right="5%"
-        width="200px"
-        height="200px"
-        borderRadius="full"
-        background={`radial-gradient(circle, ${colors.primary}10 0%, transparent 70%)`}
-        filter="blur(40px)"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+    <section id="hackathon" className="content-section page-shell hackathon-section">
+      {showHeading ? (
+        <SectionHeading
+          index="04"
+          eyebrow="Pressure tested"
+          title={<>Four AI domains. One clock. <em>Top-four finish.</em></>}
+          body="BrainHack compressed speech, vision, OCR, and multi-agent reinforcement learning into one intensely practical build cycle."
+        />
+      ) : null}
 
-      <Box height={["15vh", "0vh", "0vh"]} />
-
-      <VStack
-        zIndex={1}
-        spacing={[4, 6, 8]}
-        align="center"
-        width="100%"
-        maxW="1200px"
-        px={4}
+      <motion.article
+        className="hackathon-card glass-panel"
+        initial={{ opacity: 0, y: 38 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.24 }}
+        transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
       >
-        <MotionHeading
-          as="h1"
-          color={colors.primary}
-          maxW="80%"
-          textAlign="center"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          position="relative"
-          _after={{
-            content: '""',
-            position: "absolute",
-            bottom: "-8px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "100px",
-            height: "4px",
-            background: `linear-gradient(90deg, transparent, ${colors.primary}, transparent)`,
-            borderRadius: "2px",
-          }}
-        >
-          Hackathons & Competitions
-        </MotionHeading>
+        <div className="hackathon-copy">
+          <div className="achievement-pill"><TrophyIcon /><span>{hackathon.achievement}</span></div>
+          <p className="hackathon-label">DSTA / Singapore / {hackathon.duration}</p>
+          <h3>{hackathon.title}</h3>
+          <p>{hackathon.description}</p>
+          <div className="hackathon-module-grid">
+            {hackathon.modules.map((module, index) => (
+              <div className="hackathon-module" key={module.title}>
+                <span>0{index + 1}</span>
+                <strong>{module.title}</strong>
+                <em>{module.metric}</em>
+                <p>{module.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <MotionText
-          fontSize={["sm", "md", "lg"]}
-          color={colors.textMuted}
-          maxW="80%"
-          textAlign="center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          Challenging myself through competitive challenges
-        </MotionText>
-
-        <SimpleGrid
-          columns={[1, 1, 2]}
-          spacing={8}
-          maxW="90%"
-          pt={6}
-          as={motion.div}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {hackathons.map((hackathon, index) => (
-            <MotionBox
-              key={index}
-              variants={itemVariants}
-              p={6}
-              borderRadius="16px"
-              background={`linear-gradient(135deg, ${colors.bgCard} 0%, rgba(30, 30, 30, 0.8) 100%)`}
-              boxShadow={shadows.card}
-              color="white"
-              minW={["100%", "300px", "400px"]}
-              position="relative"
-              overflow="hidden"
-              border="1px solid rgba(218, 165, 32, 0.1)"
-              whileHover={{
-                scale: 1.02,
-                boxShadow: shadows.cardHover,
-                borderColor: "rgba(218, 165, 32, 0.3)",
-              }}
-              transition={{ duration: 0.3 }}
-              _before={{
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "3px",
-                background: `linear-gradient(90deg, ${colors.primary}, ${colors.primaryLight}, ${colors.primary})`,
-              }}
-            >
-              <HStack mb={3} spacing={3}>
-                <Box
-                  p={2}
-                  borderRadius="lg"
-                  background={`${colors.primary}20`}
-                  color={colors.primary}
-                >
-                  <FontAwesomeIcon icon={hackathon.icon} size="lg" />
-                </Box>
-                <Badge
-                  colorScheme="yellow"
-                  px={3}
-                  py={1}
-                  borderRadius="full"
-                  fontSize="sm"
-                  fontWeight="bold"
-                >
-                  {hackathon.achievement}
-                </Badge>
-              </HStack>
-
-              <Heading size="md" mb={3} color={colors.primary}>
-                {hackathon.title}
-              </Heading>
-
-              <Text fontSize="sm" color={colors.textDark} mb={4} lineHeight="1.7">
-                {hackathon.description}
-              </Text>
-
-              <HStack flexWrap="wrap" gap={2}>
-                {hackathon.tags.map((tag, tagIndex) => (
-                  <Badge
-                    key={tagIndex}
-                    variant="outline"
-                    colorScheme="yellow"
-                    px={2}
-                    py={1}
-                    borderRadius="md"
-                    fontSize="xs"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </HStack>
-            </MotionBox>
+        <div className="hackathon-orbit" aria-hidden="true">
+          <div className="orbit-core"><BrainIcon /><strong>AI</strong><span>system</span></div>
+          {hackathon.modules.map((module, index) => (
+            <div className={`orbit-node orbit-node-${index + 1}`} key={module.title}>
+              <SparkIcon /><span>{module.title}</span>
+            </div>
           ))}
-        </SimpleGrid>
-      </VStack>
-    </FullScreenSection>
+          <div className="orbit-ring orbit-ring-one" />
+          <div className="orbit-ring orbit-ring-two" />
+          <div className="orbit-ring orbit-ring-three" />
+        </div>
+      </motion.article>
+    </section>
   );
-};
-
-export default HackathonSection;
+}
