@@ -1,7 +1,7 @@
 import { ArrowUpRightIcon, DocumentIcon, DownloadIcon } from "../components/Icons";
 import PageIntro from "../components/PageIntro";
 import Reveal from "../components/Reveal";
-import { education, experiences, profile, skillGroups } from "../data/portfolio";
+import { certifications, education, experiences, profile, skillGroups } from "../data/portfolio";
 
 export default function ResumePage() {
   return (
@@ -48,6 +48,18 @@ export default function ResumePage() {
             <span className="eyebrow">Core toolkit</span>
             <div className="resume-skills">
               {skillGroups.slice(0, 4).map((group) => <span key={group.title}>{group.title}</span>)}
+            </div>
+          </Reveal>
+
+          <Reveal className="resume-summary__block glass-panel" delay={190}>
+            <span className="eyebrow">Selected credentials</span>
+            <div className="resume-certifications">
+              {certifications.slice(0, 4).map((certificate) => (
+                <a href={certificate.href} target="_blank" rel="noreferrer" key={certificate.title}>
+                  <strong>{certificate.title}</strong>
+                  <span>{certificate.issuer} · {certificate.issued}</span>
+                </a>
+              ))}
             </div>
           </Reveal>
         </div>

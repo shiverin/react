@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import AmbientBackground from "./components/AmbientBackground";
 import Footer from "./components/Footer";
 import MenuOverlay from "./components/MenuOverlay";
+import NotebookRail from "./components/NotebookRail";
 import ScrollProgress from "./components/ScrollProgress";
 import SiteHeader from "./components/SiteHeader";
 import { projects, routeMeta } from "./data/portfolio";
@@ -73,7 +74,8 @@ export default function App() {
       <div className="site-frame">
         <AmbientBackground />
         <div className="pointer-light" aria-hidden="true" />
-        <SiteHeader onMenu={() => setMenuOpen(true)} darkText={resolved.kind !== "home"} />
+        <NotebookRail route={route} />
+        <SiteHeader onMenu={() => setMenuOpen(true)} route={route} />
         <div className="page-stage" key={route}>
           {resolved.element}
         </div>

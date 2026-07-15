@@ -14,8 +14,13 @@ const requiredFiles = [
   "src/pages/ResumePage.jsx",
   "src/pages/ContactPage.jsx",
   "src/styles/index.css",
+  "src/styles/field-notes.css",
   "src/assets/portrait.webp",
   "public/zhaoshizhen_resume.pdf",
+  "docs/design-reference/field-notes-approved.png",
+  "CONTENT_AUDIT.md",
+  "DESIGN_SPEC.md",
+  "ROUTE_COMPONENT_MAP.md",
 ];
 
 const requiredText = [
@@ -29,6 +34,8 @@ const requiredText = [
   "4.85 / 5.0",
   "zhaoshizhen04@gmail.com",
   "zhaoshizhen2004",
+  "Meta Front-End Developer",
+  "Field Notes",
 ];
 
 const forbiddenText = [

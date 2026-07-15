@@ -2,10 +2,13 @@
 
 ## Source of truth order
 
-1. `public/zhaoshizhen_resume.pdf` for current roles, dates, education and headline achievements.
-2. `src/data/portfolio.js` for the web presentation and longer case-study copy.
-3. Public project repositories for technical implementation details.
-4. Older portfolio content only for archive projects that remain accurate.
+1. First-party repository history and current public project repositories for
+   active roles, project status, and implementation details.
+2. The public LinkedIn profile for corroboration and current certifications.
+3. `public/zhaoshizhen_resume.pdf` for verified experience metrics, education,
+   contact details, and older roles.
+4. `src/data/portfolio.js` for the approved web presentation. Reconcile any
+   conflict in `CONTENT_AUDIT.md` before changing a claim.
 
 ## Safe update workflow
 
@@ -18,4 +21,6 @@
 
 Use one date style throughout: `Mon YYYY — Mon YYYY` or `Mon YYYY — Present`.
 
-Keep role names identical between the resume and portfolio. Project descriptions may be expanded for readability, but metrics should never be changed without updating the resume or project evidence as well.
+Keep role names aligned with the newest verified source. Project descriptions
+may be expanded for readability, but metrics should never be changed without
+updating the resume or project evidence as well.

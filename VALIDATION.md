@@ -1,27 +1,44 @@
 # Validation report
 
-## Completed checks
+Validated on 15 July 2026 against the approved field-notes concept in
+`docs/design-reference/field-notes-approved.png`.
 
-- `npm run check` passes.
-- All required source files are present.
-- All seven project slugs are unique and routed.
-- Current resume content and contact details are present.
-- Placeholder names, example addresses and TODO copy are absent.
-- The bundled resume PDF is present and non-empty.
-- The home composition was rendered at desktop and mobile widths using the repository markup and CSS.
-- The work page was rendered at desktop width using the repository markup and CSS.
-- Responsive, reduced-motion and keyboard-focus rules are included.
+## Automated checks
 
-## Preview files
+- `npm run check` passes: required source and design-document files exist, all
+  seven project slugs are unique, and the supplied resume PDF is present.
+- `npm run build` passes with Create React App production optimisations.
+- Production bundle at validation time: 62.67 kB JavaScript and 19 kB CSS
+  after gzip (sizes may move slightly with later dependency rebuilds).
 
-- `preview/screenshots/home-desktop.png`
-- `preview/screenshots/home-mobile.png`
-- `preview/screenshots/work-desktop.png`
-- `preview/home.html`
-- `preview/work.html`
+## Browser interaction pass
 
-The HTML previews can be opened directly from the extracted repository. They are lightweight static snapshots for visual review; the React application remains the production implementation.
+Tested in the Codex in-app Chromium browser against `http://127.0.0.1:3002`.
 
-## Build status in this environment
+- Desktop home renders the notebook binding, cut-paper portrait, large serif
+  identity, full navigation, registration marks, and section gateway rail.
+- Work navigation opens `#/work`; the O(Alpha) card opens
+  `#/work/o-alpha` with its complete case study.
+- Resume navigation opens `#/resume`; the supplied PDF is embedded and linked
+  from all download actions at `/zhaoshizhen_resume.pdf`.
+- Mobile at 390 × 844 has no horizontal overflow, preserves readable hero
+  contrast, and reflows the portrait and gateway content into one column.
+- The mobile menu opens as a modal navigation surface and locks background
+  scrolling.
+- Browser diagnostics contain no application warnings or errors. The only
+  console message is React's standard development-mode DevTools notice.
 
-A full `npm install` and Create React App production build could not be completed in the isolated build environment because the external npm registry was unreachable. The repository is configured for Node 18 or newer, and the included GitHub Actions workflow performs installation, validation and the production build after the repository is pushed.
+## Motion and accessibility
+
+- Route entrances, staggered hero typography, rule drawing, collage arrival,
+  navigation states, card reveals, and pointer tilt use transform/opacity-led
+  motion with requestAnimationFrame throttling where pointer or scroll input is
+  involved.
+- `prefers-reduced-motion` disables non-essential motion and smooth scrolling.
+- Focus-visible styling, semantic landmarks, descriptive links, and a skip link
+  remain available across routes.
+
+## Visual captures
+
+Runtime captures are stored outside the repository in the Codex visualisation
+workspace so stale generated previews are not committed as product source.

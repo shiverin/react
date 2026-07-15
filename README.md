@@ -1,26 +1,16 @@
-# Zhao Shizhen — Editorial Glass Portfolio
+# Zhao Shizhen - Field Notes Portfolio
 
-A complete React portfolio redesign built around the soft, pastel **glass-morph editorial** direction selected from the concept sheet: lavender and peach volumetric colour, floating frosted cards, a tilted portrait tile, restrained typography and a menu-first navigation model.
+A complete React portfolio built as a tactile digital field notebook: archival ivory paper, navy book cloth, high-contrast editorial typography, a cut-paper portrait, and professional motion that respects reduced-motion preferences.
 
-The repository is designed as a direct replacement for the existing `shiverin/react` portfolio while keeping the content in one maintainable data file.
+## Included
 
-## What is included
-
-- A single-screen home composition matching the selected design language.
-- Responsive layouts for desktop, tablet and mobile.
-- Full-page glass navigation overlay.
-- About, Work, Experience, Resume, Contact and 404 pages.
-- Seven individual project case studies.
-- CSS-only animated mesh background, pointer light and glass reflections.
-- Mouse-reactive tilt surfaces with a reduced-motion fallback.
-- Custom project artwork drawn entirely in HTML/CSS/SVG, with no stock UI screenshots.
-- Downloadable and embeddable resume PDF.
-- Accessible focus states, skip link, semantic page structure and keyboard-closeable navigation.
-- GitHub Pages workflow using hash-based routes, so deep navigation works on static hosting.
-
-## Preview without installing
-
-Open `preview/home.html` or `preview/work.html` directly in a browser. Rendered desktop and mobile reference images are also included under `preview/screenshots/`.
+- Home, About, Work, Experience, Resume, Contact, 404, and seven project case-study routes.
+- Centralized first-party content in `src/data/portfolio.js`.
+- Current supplied resume embedded and downloadable from `public/zhaoshizhen_resume.pdf`.
+- Selected public certifications verified from LinkedIn and linked to their issuers.
+- Responsive notebook navigation, keyboard-safe menu, visible focus states, and reduced-motion fallbacks.
+- Transform/opacity page transitions, scroll reveals, portrait depth, rule drawing, and directional hover motion.
+- GitHub Pages deployment using hash routes.
 
 ## Run locally
 
@@ -29,103 +19,29 @@ npm install
 npm start
 ```
 
-The development site opens at `http://localhost:3000`.
+Open `http://localhost:3000`.
 
-## Production build
+## Validate and build
 
 ```bash
 npm run check
 npm run build
 ```
 
-The compiled site is written to `build/`.
+The optimized site is written to `build/`.
 
-## Replace the current GitHub repository
+## Content and design references
 
-Copy everything in this repository over the existing `shiverin/react` working tree, then run:
-
-```bash
-rm -rf node_modules build
-npm install
-npm run check
-npm run build
-
-git add -A
-git commit -m "Redesign portfolio with editorial glass system"
-git push origin main
-```
-
-The workflow in `.github/workflows/deploy-pages.yml` deploys the `build/` output through GitHub Pages. In the repository settings, set **Pages → Source** to **GitHub Actions**.
+- `CONTENT_AUDIT.md` - source precedence, conflicts, and content decisions.
+- `DESIGN_SPEC.md` - visual thesis, tokens, motion, and responsive behavior.
+- `ROUTE_COMPONENT_MAP.md` - route and shared-component ownership.
+- `docs/design-reference/field-notes-approved.png` - approved Design 2 reference.
+- `VALIDATION.md` - build and rendered QA evidence.
 
 ## Updating content
 
-Nearly all portfolio copy and links live in:
+Edit `src/data/portfolio.js` for identity, experience, projects, skills, certifications, achievements, and SEO metadata. Replace the resume at `public/zhaoshizhen_resume.pdf`; replace both portrait formats in `src/assets/` together.
 
-```text
-src/data/portfolio.js
-```
+## Contact form
 
-Update this file to change:
-
-- personal details and social links
-- home navigation card copy
-- education and achievements
-- work experience
-- project case studies
-- technical skills and interests
-- SEO page titles and descriptions
-
-Replace the PDF at:
-
-```text
-public/zhaoshizhen_resume.pdf
-```
-
-Replace the portrait at:
-
-```text
-src/assets/portrait.webp
-src/assets/portrait.jpg
-```
-
-Keep both formats so browsers can use WebP with a JPEG fallback.
-
-## Routes
-
-The app uses URL hashes for reliable GitHub Pages hosting:
-
-```text
-#/                    Home
-#/about               About
-#/work                Selected work
-#/work/o-alpha        O(Alpha) case study
-#/work/messenger      Messenger case study
-#/work/traffic-sign-cnn
-#/work/gotalk
-#/work/offline-leetcode
-#/work/pdfiledit
-#/work/finance-simulator
-#/experience          Experience
-#/resume              Resume
-#/contact             Contact
-```
-
-## Design system
-
-The visual system is deliberately different from the common dark-neon developer portfolio aesthetic:
-
-- **Canvas:** soft lavender-to-peach atmospheric gradient
-- **Glass:** semi-opaque white layers with low-contrast borders and blur
-- **Typography:** light editorial sans-serif hierarchy
-- **Motion:** slow background drift, short page entry, subtle 3D tilt and reflective highlights
-- **Composition:** asymmetrical cards with vertical offsets and generous empty space
-
-Global tokens are in `src/styles/tokens.css`. Home-specific composition is in `src/styles/home.css`; all breakpoints are in `src/styles/responsive.css`.
-
-## Contact form behaviour
-
-The contact form intentionally opens the visitor's default email application with a pre-filled subject and body. No credentials, third-party form service or client-side secret is required, and the website stores no submitted data.
-
-## Content provenance
-
-The latest supplied resume is treated as the source of truth for current education, experience, dates, headline metrics and primary projects. Older public projects from the existing portfolio/GitHub profile are retained as archive work. LinkedIn remains linked from every relevant contact surface, but no inaccessible LinkedIn-only claim is hard-coded into the site.
+The form opens the visitor's default email app with a prefilled message. No form data is stored and no client-side secret is required.

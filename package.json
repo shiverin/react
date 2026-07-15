@@ -1,8 +1,8 @@
 {
-  "name": "zhao-shizhen-editorial-glass-portfolio",
-  "version": "3.0.0",
+  "name": "zhao-shizhen-field-notes-portfolio",
+  "version": "4.0.0",
   "private": true,
-  "description": "Editorial glassmorphism portfolio for Zhao Shizhen.",
+  "description": "Field-notes editorial portfolio for Zhao Shizhen.",
   "homepage": ".",
   "dependencies": {
     "react": "^18.3.1",

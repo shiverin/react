@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const ref = useRef(null);
 
   useEffect(() => {
     let frame = 0;
@@ -9,7 +9,8 @@ export default function ScrollProgress() {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const max = document.documentElement.scrollHeight - window.innerHeight;
-        setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+        const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        if (ref.current) ref.current.style.transform = `scaleX(${progress})`;
       });
     };
     update();
@@ -22,5 +23,5 @@ export default function ScrollProgress() {
     };
   }, []);
 
-  return <div className="scroll-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />;
+  return <div ref={ref} className="scroll-progress" aria-hidden="true" />;
 }

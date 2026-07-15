@@ -4,7 +4,7 @@ import PageIntro from "../components/PageIntro";
 import Reveal from "../components/Reveal";
 import StatStrip from "../components/StatStrip";
 import TiltSurface from "../components/TiltSurface";
-import { achievements, education, interests, principles, profile, skillGroups } from "../data/portfolio";
+import { achievements, certifications, education, interests, principles, profile, skillGroups } from "../data/portfolio";
 
 export default function AboutPage() {
   return (
@@ -46,6 +46,23 @@ export default function AboutPage() {
               <span>{principle.number}</span>
               <h3>{principle.title}</h3>
               <p>{principle.copy}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block certification-section">
+        <Reveal className="section-heading-row">
+          <div><span className="eyebrow">Continued learning</span><h2>Credentials, with receipts.</h2></div>
+          <p>Selected public credentials verified from LinkedIn and linked to their issuers.</p>
+        </Reveal>
+        <div className="certification-list">
+          {certifications.map((certificate, index) => (
+            <Reveal as="a" className="certification-row" delay={index * 45} href={certificate.href} target="_blank" rel="noreferrer" key={certificate.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{certificate.title}</strong>
+              <small>{certificate.issuer}</small>
+              <small>{certificate.issued}</small>
             </Reveal>
           ))}
         </div>

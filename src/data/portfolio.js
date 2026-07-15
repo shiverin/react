@@ -84,6 +84,45 @@ export const achievements = [
   },
 ];
 
+export const certifications = [
+  {
+    title: "Meta Back-End Developer",
+    issuer: "Meta",
+    issued: "Aug 2025",
+    href: "https://www.coursera.org/account/accomplishments/professional-cert/certificate/0YKEF8EQABUP",
+  },
+  {
+    title: "CS50's Web Programming with Python and JavaScript",
+    issuer: "CS50",
+    issued: "Jul 2025",
+    href: "https://cs50.harvard.edu/certificates/42c9aa25-f8d6-4a9c-b55d-06d851a93a95",
+  },
+  {
+    title: "Meta Front-End Developer",
+    issuer: "Meta",
+    issued: "Apr 2025",
+    href: "https://coursera.org/share/6332d9ea3579946f8f22b6d3f386afae",
+  },
+  {
+    title: "Google Data Analytics",
+    issuer: "Google",
+    issued: "Apr 2025",
+    href: "https://coursera.org/verify/professional-cert/BUBR0COUPDDO",
+  },
+  {
+    title: "CS50's Introduction to Computer Science",
+    issuer: "CS50",
+    issued: "Apr 2025",
+    href: "https://certificates.cs50.io/88c5cb40-8d8f-465e-a9c8-b61c4c8c9d9c.png?size=letter",
+  },
+  {
+    title: "ABRSM Grade 8 Violin — Distinction",
+    issuer: "ABRSM",
+    issued: "Apr 2021",
+    href: "https://portal.abrsm.org/en-GB/validate?certificateNumber=0002205481&contactId=006YG278",
+  },
+];
+
 export const experiences = [
   {
     company: "Kpler",
