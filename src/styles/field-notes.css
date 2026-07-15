@@ -643,7 +643,7 @@ body {
 }
 
 .content-page {
-  padding: 110px 0 120px;
+  padding: 52px 0 120px;
 }
 
 .page-intro {
@@ -654,9 +654,9 @@ body {
 }
 
 .page-intro--compact {
-  min-height: 118px;
+  min-height: 0;
   align-items: center;
-  padding-bottom: 34px;
+  padding-bottom: 20px;
 }
 
 .page-intro--compact .page-intro__main {
@@ -669,6 +669,14 @@ body {
 .page-intro--compact .page-intro__main > p {
   max-width: 700px;
   margin: 0;
+}
+
+.about-opening,
+.featured-projects,
+.experience-timeline,
+.resume-layout,
+.contact-layout {
+  margin-top: 32px;
 }
 
 .page-intro__main h1 {
@@ -1262,7 +1270,7 @@ body {
   }
 
   .content-page {
-    padding-top: 90px;
+    padding-top: 64px;
   }
 }
 
@@ -1361,7 +1369,7 @@ body {
   }
 
   .content-page {
-    padding: 78px 0 80px;
+    padding: 48px 0 80px;
   }
 
   .page-intro {
