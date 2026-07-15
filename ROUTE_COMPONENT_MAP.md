@@ -2,11 +2,11 @@
 
 | Hash | Section component | Primary content |
 |---|---|---|
-| `#home` | `HomePage` | Identity and portrait |
+| `#home` | `HomePage` | Identity and five-photo cutout gallery |
 | `#about` | `AboutPage` | Profile, principles, education, achievements, skills, credentials, interests |
-| `#work` | `WorkPage` | Featured and archive projects with repository links |
+| `#work` | `WorkPage` | Ranked, filterable projects with repository links and one confidential case study |
 | `#experience` | `ExperiencePage` | Kpler, Source Academy, Shopee, and BrainHack |
-| `#resume` | `ResumePage` | Embedded and downloadable supplied resume |
+| `#resume` | `ResumePage` | Rendered resume preview linked directly to the downloadable PDF |
 | `#contact` | `ContactPage` | Contact links and mailto composer |
 
 ## Shared system
@@ -19,7 +19,7 @@
 - `TiltSurface`: subtle local pointer transform; disabled for touch and reduced
   motion.
 - `ScrollProgress`: requestAnimationFrame-throttled document progress.
-- `ProjectCard` / `ProjectArtwork`: repository-linked summaries and responsive
-  code-native visuals.
+- `ProjectCard` / `ProjectArtwork`: linked and confidential project summaries
+  with responsive code-native visuals.
 - `src/data/portfolio.js`: centralised content source.
 - `src/styles/field-notes.css`: accepted visual system and responsive overrides.

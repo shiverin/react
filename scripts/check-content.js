@@ -16,6 +16,11 @@ const requiredFiles = [
   "src/styles/index.css",
   "src/styles/field-notes.css",
   "src/assets/portrait.webp",
+  "src/assets/hero-gallery/garden.jpg",
+  "src/assets/hero-gallery/tiger-leaping-gorge.jpg",
+  "src/assets/hero-gallery/snowline.jpg",
+  "src/assets/hero-gallery/cafe.jpg",
+  "src/assets/resume/zhaoshizhen-resume.png",
   "public/zhaoshizhen_resume.pdf",
   "docs/design-reference/field-notes-approved.png",
   "CONTENT_AUDIT.md",
@@ -28,9 +33,14 @@ const requiredText = [
   "Kpler",
   "Source Academy",
   "Shopee",
+  "Trippi.ai",
   "O(Alpha)",
-  "Messenger",
-  "Traffic Sign CNN",
+  "ApplyPilot",
+  "SIGNAL",
+  "Brainrot Idle Defense",
+  "BloxLands",
+  "Lane Clash",
+  "Kpler API Expert",
   "4.85 / 5.0",
   "zhaoshizhen04@gmail.com",
   "zhaoshizhen2004",
@@ -74,7 +84,7 @@ for (const text of forbiddenText) {
 
 const dataFile = fs.readFileSync(path.join(root, "src", "data", "portfolio.js"), "utf8");
 const slugs = [...dataFile.matchAll(/slug:\s*"([^"]+)"/g)].map((match) => match[1]);
-if (slugs.length !== 7) failures.push(`Expected 7 project slugs, found ${slugs.length}`);
+if (slugs.length !== 8) failures.push(`Expected 8 project slugs, found ${slugs.length}`);
 if (new Set(slugs).size !== slugs.length) failures.push("Duplicate project slug detected");
 
 const railFile = fs.readFileSync(path.join(root, "src", "components", "NotebookRail.jsx"), "utf8");

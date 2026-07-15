@@ -49,6 +49,135 @@ function OAlphaArtwork() {
   );
 }
 
+function TrippiArtwork() {
+  return (
+    <div className="project-art project-art--trippi">
+      <WindowChrome label="trippi.ai / berlin workspace" />
+      <div className="trippi-layout">
+        <aside className="trippi-days">
+          <strong>BERLIN · 6 DAYS</strong>
+          {["Arrival & Mitte", "Museum Island", "Kreuzberg", "Potsdam"].map((day, index) => (
+            <span className={index === 1 ? "is-active" : ""} key={day}><i>0{index + 1}</i>{day}</span>
+          ))}
+          <small>4 travellers · synced</small>
+        </aside>
+        <section className="trippi-map">
+          <div className="trippi-route" aria-hidden="true"><i /><i /><i /><i /></div>
+          <div className="trippi-map__card"><small>DAY 02</small><strong>Museum Island</strong><span>5 places · 4.2 km</span></div>
+          <div className="trippi-budget"><span>Trip budget</span><strong>€2,840</strong><i><em /></i></div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function ApplyPilotArtwork() {
+  return (
+    <div className="project-art project-art--applypilot">
+      <WindowChrome label="applypilot / campaign control" />
+      <div className="applypilot-layout">
+        <aside>
+          <strong>AP</strong>
+          <span className="is-active">Campaign</span><span>Evidence</span><span>Practice</span><span>Review</span>
+        </aside>
+        <section>
+          <div className="applypilot-top"><div><small>ACTIVE CAMPAIGN</small><b>Backend &amp; Platform</b></div><span>Guardrails on</span></div>
+          <div className="applypilot-stats"><div><small>Discovered</small><b>48</b></div><div><small>Matched</small><b>17</b></div><div><small>Needs review</small><b>03</b></div></div>
+          <div className="applypilot-jobs">
+            {["Platform Engineer", "Software Engineer", "Backend Intern"].map((role, index) => (
+              <div key={role}><i>{String.fromCharCode(65 + index)}</i><span><b>{role}</b><small>{["Greenhouse", "Lever", "Ashby"][index]} · evidence matched</small></span><em>{[94, 89, 84][index]}%</em></div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function SignalArtwork() {
+  return (
+    <div className="project-art project-art--signal">
+      <WindowChrome label="signal / cultural markets" />
+      <div className="signal-layout">
+        <div className="signal-question"><small>OPEN FORECAST · CULTURE</small><strong>Will spatial computing become a mainstream creative medium by 2028?</strong><div><span>YES · 64%</span><span>NO · 36%</span></div></div>
+        <div className="signal-receipts"><small>RECENT RECEIPTS</small>{["Immersive concerts", "AI-native cinema", "Wearable interfaces"].map((item, index) => <span key={item}><i>0{index + 1}</i><b>{item}</b><em>+{18 - index * 3}</em></span>)}</div>
+      </div>
+    </div>
+  );
+}
+
+function BrainrotArtwork() {
+  return (
+    <div className="project-art project-art--brainrot">
+      <WindowChrome label="brainrot idle defense / wave 18" />
+      <div className="brainrot-stage">
+        <div className="brainrot-hud"><span>WAVE <b>18</b></span><span>COINS <b>12.4K</b></span><span>BASE <b>92%</b></span></div>
+        <div className="brainrot-path"><i /><i /><i /><i /><i /></div>
+        <div className="brainrot-tower brainrot-tower--one"><i /><span /></div>
+        <div className="brainrot-tower brainrot-tower--two"><i /><span /></div>
+        <div className="brainrot-enemies"><i /><i /><i /><i /></div>
+        <div className="brainrot-bar"><span>LOBBY</span><b>BATTLE</b><span>UNITS</span></div>
+      </div>
+    </div>
+  );
+}
+
+function BloxLandsArtwork() {
+  return (
+    <div className="project-art project-art--bloxlands">
+      <WindowChrome label="bloxlands / world START" />
+      <div className="bloxlands-stage">
+        <div className="bloxlands-sky"><i /><i /></div>
+        <div className="bloxlands-island">{Array.from({ length: 18 }, (_, index) => <i key={index} />)}</div>
+        <div className="bloxlands-tree"><i /><span /><span /><span /></div>
+        <div className="bloxlands-lock"><i /><span>PRO</span></div>
+        <div className="bloxlands-toolbar">{["MINE", "PLANT", "HARVEST", "LOCK"].map((item, index) => <span className={index === 0 ? "is-active" : ""} key={item}>{item}</span>)}</div>
+      </div>
+    </div>
+  );
+}
+
+function LaneClashArtwork() {
+  return (
+    <div className="project-art project-art--laneclash">
+      <WindowChrome label="lane clash / pvp arena" />
+      <div className="laneclash-stage">
+        <div className="laneclash-score"><span>RIVAL <b>1840</b></span><i>02:14</i><span>YOU <b>2010</b></span></div>
+        <div className="laneclash-arena"><div className="lane"><i className="tower" /><i className="unit unit--a" /><i className="unit unit--b" /></div><div className="lane"><i className="tower" /><i className="unit unit--c" /><i className="unit unit--d" /></div></div>
+        <div className="laneclash-deck">{[3, 5, 4, 7].map((cost, index) => <span key={`${cost}-${index}`}><i>{cost}</i><b>{["VANGUARD", "ARC MAGE", "WARDEN", "TITAN"][index]}</b></span>)}</div>
+      </div>
+    </div>
+  );
+}
+
+function KplerArtwork() {
+  return (
+    <div className="project-art project-art--kpler">
+      <WindowChrome label="commodity api expert / bounded run" />
+      <div className="kpler-layout">
+        <aside>
+          <small>ANALYST QUESTION</small>
+          <strong>Compare flows by market and period</strong>
+          <span>Intent routed to an allowlisted endpoint</span>
+        </aside>
+        <section>
+          <div className="kpler-route">
+            <span><i>01</i>Route</span><b>→</b><span><i>02</i>Validate</span><b>→</b><span><i>03</i>Execute</span>
+          </div>
+          <div className="kpler-contract">
+            <small>NORMALIZED OUTPUT</small>
+            <div><span>period</span><span>entity</span><span>value</span><span>unit</span></div>
+            {["2026-Q1", "2026-Q2", "2026-Q3"].map((period, index) => (
+              <div key={period}><b>{period}</b><b>Market {String.fromCharCode(65 + index)}</b><b>{[42.8, 38.4, 51.2][index]}</b><b>kt</b></div>
+            ))}
+          </div>
+          <p><i /> Credentials isolated · parameters validated · outputs redacted</p>
+        </section>
+      </div>
+    </div>
+  );
+}
+
 function MessengerArtwork() {
   return (
     <div className="project-art project-art--messenger">
@@ -184,15 +313,22 @@ function FinanceArtwork() {
 }
 
 export default function ProjectArtwork({ variant, className = "" }) {
-  const artwork = {
-    oalpha: <OAlphaArtwork />,
-    messenger: <MessengerArtwork />,
-    cnn: <CNNArtwork />,
-    gotalk: <GoTalkArtwork />,
-    offline: <OfflineArtwork />,
-    pdf: <PDFArtwork />,
-    finance: <FinanceArtwork />,
-  }[variant] || <OAlphaArtwork />;
+  const Artwork = {
+    trippi: TrippiArtwork,
+    oalpha: OAlphaArtwork,
+    applypilot: ApplyPilotArtwork,
+    signal: SignalArtwork,
+    brainrot: BrainrotArtwork,
+    bloxlands: BloxLandsArtwork,
+    laneclash: LaneClashArtwork,
+    kpler: KplerArtwork,
+    messenger: MessengerArtwork,
+    cnn: CNNArtwork,
+    gotalk: GoTalkArtwork,
+    offline: OfflineArtwork,
+    pdf: PDFArtwork,
+    finance: FinanceArtwork,
+  }[variant] || OAlphaArtwork;
 
-  return <div className={`project-artwork ${className}`.trim()}>{artwork}</div>;
+  return <div className={`project-artwork ${className}`.trim()}><Artwork /></div>;
 }

@@ -456,6 +456,7 @@ body {
   box-shadow: 0 20px 50px rgba(16, 46, 99, 0.2);
   content: "";
   transform: rotate(-0.5deg);
+  transition: inset 700ms var(--ease-spring), width 700ms var(--ease-spring), height 700ms var(--ease-spring), transform 700ms var(--ease-spring);
 }
 
 .portrait-collage__paper {
@@ -464,8 +465,14 @@ body {
   inset: 38px 4% 6px 1%;
   clip-path: polygon(11% 3%, 72% 0, 96% 13%, 91% 86%, 77% 100%, 9% 93%, 0 61%, 4% 16%);
   background: var(--paper-light);
+  box-shadow: 7px 7px 0 rgba(231, 224, 210, 0.92), 13px 13px 0 rgba(16, 46, 99, 0.1);
   filter: drop-shadow(0 18px 25px rgba(30, 34, 43, 0.18));
   transform: rotate(1.5deg) scale(1.03);
+  transition: inset 700ms var(--ease-spring), clip-path 700ms var(--ease-spring), transform 700ms var(--ease-spring);
+}
+
+.portrait-collage:hover .portrait-collage__paper {
+  transform: translate(3px, 2px) rotate(2.4deg) scale(1.03);
 }
 
 .portrait-cutout {
@@ -473,12 +480,15 @@ body {
   inset: 48px 7% 11px 5%;
   overflow: hidden;
   clip-path: polygon(13% 2%, 75% 0, 98% 14%, 92% 87%, 78% 100%, 10% 93%, 0 62%, 5% 17%);
+  padding: 0;
+  border: 0;
   background: #1b2027;
-  filter: saturate(0.78) contrast(1.03);
+  cursor: pointer;
+  isolation: isolate;
 }
 
-.portrait-cutout picture,
 .portrait-cutout img {
+  display: block;
   width: 100%;
   height: 100%;
 }
@@ -486,8 +496,15 @@ body {
 .portrait-cutout img {
   object-fit: cover;
   object-position: center 35%;
+  filter: saturate(0.78) contrast(1.03);
   transform: scale(1.03);
+  animation: portrait-photo-in 620ms var(--ease-spring) both;
   transition: transform 1s var(--ease-spring), filter 500ms ease;
+}
+
+@keyframes portrait-photo-in {
+  from { opacity: 0; transform: scale(1.09) rotate(0.6deg); }
+  to { opacity: 1; transform: scale(1.03) rotate(0); }
 }
 
 .portrait-cutout:hover img {
@@ -499,18 +516,103 @@ body {
   display: none;
 }
 
-.portrait-collage__note {
-  position: absolute;
-  z-index: 7;
-  top: 38%;
-  left: -16px;
-  color: var(--blue-ink);
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-style: italic;
-  letter-spacing: 0.09em;
-  transform: rotate(-80deg);
+.portrait-cutout.tilt-surface {
+  transition: transform 650ms var(--ease-spring), box-shadow 450ms var(--ease-out);
 }
+
+.portrait-cutout:focus-visible {
+  outline: 0;
+  box-shadow: inset 0 0 0 4px var(--red), 0 18px 35px rgba(16, 46, 99, 0.22);
+}
+
+.portrait-collage--garden::before {
+  top: 8%;
+  right: 2%;
+  width: 82%;
+  height: 84%;
+  transform: rotate(-1deg);
+}
+
+.portrait-collage--garden .portrait-collage__paper {
+  inset: 5% 7% 5% 6%;
+  clip-path: polygon(8% 2%, 80% 0, 98% 10%, 95% 88%, 83% 100%, 8% 96%, 1% 80%, 3% 14%);
+}
+
+.portrait-collage--garden .portrait-cutout {
+  inset: 8% 9% 9% 10%;
+  clip-path: polygon(9% 2%, 79% 0, 98% 11%, 94% 88%, 82% 100%, 8% 96%, 0 79%, 3% 14%);
+}
+
+.portrait-collage--garden .portrait-cutout img {
+  object-position: 50% 52%;
+}
+
+.portrait-collage--gorge::before {
+  top: 8%;
+  right: 4%;
+  width: 84%;
+  height: 84%;
+  transform: rotate(0.8deg);
+}
+
+.portrait-collage--gorge .portrait-collage__paper {
+  inset: 2% 5% 2% 5%;
+  clip-path: polygon(5% 5%, 36% 0, 96% 4%, 100% 25%, 96% 91%, 85% 100%, 7% 96%, 0 78%, 2% 18%);
+}
+
+.portrait-collage--gorge .portrait-cutout {
+  inset: 5% 8% 5% 8%;
+  clip-path: polygon(5% 4%, 36% 0, 97% 5%, 100% 26%, 96% 91%, 84% 100%, 7% 96%, 0 78%, 2% 18%);
+}
+
+.portrait-collage--gorge .portrait-cutout img {
+  object-position: 52% 48%;
+}
+
+.portrait-collage--snowline::before {
+  top: 5%;
+  right: 5%;
+  width: 82%;
+  height: 88%;
+  transform: rotate(-0.7deg);
+}
+
+.portrait-collage--snowline .portrait-collage__paper {
+  inset: 5% 6% 4% 7%;
+  clip-path: polygon(13% 0, 88% 3%, 100% 18%, 95% 88%, 79% 100%, 6% 95%, 0 72%, 5% 12%);
+}
+
+.portrait-collage--snowline .portrait-cutout {
+  inset: 7% 10% 7% 10%;
+  clip-path: polygon(12% 0, 88% 3%, 100% 18%, 95% 88%, 79% 100%, 6% 95%, 0 72%, 5% 12%);
+}
+
+.portrait-collage--snowline .portrait-cutout img {
+  object-position: 52% 50%;
+}
+
+.portrait-collage--cafe::before {
+  top: 8%;
+  right: 3%;
+  width: 86%;
+  height: 84%;
+  transform: rotate(1deg);
+}
+
+.portrait-collage--cafe .portrait-collage__paper {
+  inset: 2% 5% 2% 5%;
+  clip-path: polygon(8% 3%, 91% 0, 100% 13%, 96% 88%, 86% 100%, 8% 97%, 0 82%, 3% 14%);
+}
+
+.portrait-collage--cafe .portrait-cutout {
+  inset: 5% 8% 5% 8%;
+  clip-path: polygon(8% 3%, 91% 0, 100% 13%, 96% 88%, 86% 100%, 8% 97%, 0 82%, 3% 14%);
+}
+
+.portrait-collage--cafe .portrait-cutout img {
+  object-position: 50% 48%;
+}
+
 
 .home-gateways {
   position: relative;
@@ -941,6 +1043,68 @@ body {
   backdrop-filter: none;
 }
 
+.project-filter {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 32px;
+  border-top: 1px solid rgba(24, 27, 36, 0.22);
+  border-bottom: 1px solid rgba(24, 27, 36, 0.22);
+}
+
+.project-filter button {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  border: 0;
+  border-right: 1px solid rgba(24, 27, 36, 0.18);
+  color: var(--ink-soft);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.67rem;
+  letter-spacing: 0.035em;
+  transition: color 220ms ease, background 220ms ease;
+}
+
+.project-filter button:last-child {
+  border-right: 0;
+}
+
+.project-filter button:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.project-filter button.is-active {
+  color: var(--paper-light);
+  background: var(--navy);
+  box-shadow: inset 0 -3px var(--red);
+}
+
+.project-filter button small {
+  color: inherit;
+  font-size: 0.5rem;
+  opacity: 0.58;
+}
+
+.project-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 32px;
+}
+
+.project-filter-grid > .reveal:first-child {
+  grid-column: 1 / -1;
+}
+
+.project-filter-grid > .reveal:first-child .project-art {
+  min-height: 520px;
+}
+
 .project-card:hover {
   box-shadow: 11px 14px 0 rgba(16, 46, 99, 0.14), 0 35px 75px rgba(28, 32, 43, 0.14);
   transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-5px);
@@ -1052,6 +1216,36 @@ body {
   box-shadow: 10px 13px 0 var(--navy), var(--shadow-float);
 }
 
+.resume-paper-wrap {
+  min-height: 0;
+}
+
+.resume-download-preview {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  background: #fff;
+  box-shadow: 10px 13px 0 var(--navy), var(--shadow-float);
+  transition: transform 380ms var(--ease-spring), box-shadow 380ms ease;
+}
+
+.resume-download-preview:hover {
+  transform: translate(-3px, -4px);
+  box-shadow: 16px 20px 0 var(--navy), 0 28px 65px rgba(16, 46, 99, .2);
+}
+
+.resume-download-preview:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 7px;
+}
+
+.resume-download-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .resume-certifications {
   display: flex;
   flex-direction: column;
@@ -1140,6 +1334,16 @@ body {
 }
 
 @media (max-width: 1180px) {
+  .about-opening--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-opening--single .about-opening__statement {
+    min-height: 0;
+    justify-content: flex-start;
+    padding: clamp(30px, 5vw, 48px);
+  }
+
   .desktop-nav {
     gap: 24px;
     margin-left: 120px;
@@ -1272,6 +1476,16 @@ body {
   .content-page {
     padding-top: 64px;
   }
+
+  .project-filter {
+    grid-template-columns: repeat(5, minmax(130px, 1fr));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .project-filter::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1334,11 +1548,6 @@ body {
     margin: 20px auto 42px;
   }
 
-  .portrait-collage__note {
-    left: -12px;
-    font-size: 0.78rem;
-  }
-
   .home-gateways {
     display: block;
     border-bottom: 0;
@@ -1370,6 +1579,27 @@ body {
 
   .content-page {
     padding: 48px 0 80px;
+  }
+
+  .about-opening--single {
+    margin-top: 22px;
+  }
+
+  .about-opening--single .about-opening__statement {
+    padding: 26px 22px 28px;
+  }
+
+  .project-filter-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .project-filter-grid > .reveal:first-child {
+    grid-column: auto;
+  }
+
+  .project-filter-grid > .reveal:first-child .project-art {
+    min-height: 400px;
   }
 
   .page-intro {
@@ -1432,6 +1662,7 @@ body {
   .home-intro h1 span,
   .home-intro__role,
   .portrait-collage,
+  .portrait-cutout img,
   .home-gateway,
   .reveal {
     animation: none !important;
