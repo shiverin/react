@@ -1,22 +1,47 @@
-# React Portfolio Website
+# Zhao Shizhen - Field Notes Portfolio
 
-This is my **personal portfolio** built using **React** and **Chakra UI**.
+A complete React portfolio built as a tactile digital field notebook: archival ivory paper, navy book cloth, high-contrast editorial typography, a cut-paper portrait, and professional motion that respects reduced-motion preferences.
 
-## Features
+## Included
 
-- **Responsive Design**: The portfolio is fully responsive, adapting to various screen sizes (desktop, tablet, mobile), ensuring a seamless experience on any device.
-  
-- **Contact Me Section**: Users can easily reach out to me through a **contact form** that integrates with **EmailJS**, enabling me to receive messages directly to my inbox without needing a backend.
+- Home, About, Work, Experience, Resume, Contact, 404, and seven project case-study routes.
+- Centralized first-party content in `src/data/portfolio.js`.
+- Current supplied resume embedded and downloadable from `public/zhaoshizhen_resume.pdf`.
+- Selected public certifications verified from LinkedIn and linked to their issuers.
+- Responsive notebook navigation, keyboard-safe menu, visible focus states, and reduced-motion fallbacks.
+- Transform/opacity page transitions, scroll reveals, portrait depth, rule drawing, and directional hover motion.
+- GitHub Pages deployment using hash routes.
 
-- **Smooth Animations**: The portfolio includes smooth animations and scroll-triggered effects, providing an interactive and engaging user experience.
+## Run locally
 
-- **Dynamic Content**: React's **Context API** and **state management** are utilized to handle dynamic content such as project details, and sections that update in response to user interactions or scroll events.
+```bash
+npm install
+npm start
+```
 
-- **Styled Components**: The project is styled with **Chakra UI**, which allows for easy customization and a consistent, modern look across the entire site.
+Open `http://localhost:3000`.
 
-## Tech Stack
+## Validate and build
 
-- **React**: For building the user interface and handling state.
-- **Chakra UI**: For responsive styling and UI components.
-- **EmailJS**: For handling form submissions and sending emails without needing a backend.
-- **GitHub Pages**: For deploying the site.
+```bash
+npm run check
+npm run build
+```
+
+The optimized site is written to `build/`.
+
+## Content and design references
+
+- `CONTENT_AUDIT.md` - source precedence, conflicts, and content decisions.
+- `DESIGN_SPEC.md` - visual thesis, tokens, motion, and responsive behavior.
+- `ROUTE_COMPONENT_MAP.md` - route and shared-component ownership.
+- `docs/design-reference/field-notes-approved.png` - approved Design 2 reference.
+- `VALIDATION.md` - build and rendered QA evidence.
+
+## Updating content
+
+Edit `src/data/portfolio.js` for identity, experience, projects, skills, certifications, achievements, and SEO metadata. Replace the resume at `public/zhaoshizhen_resume.pdf`; replace both portrait formats in `src/assets/` together.
+
+## Contact form
+
+The form opens the visitor's default email app with a prefilled message. No form data is stored and no client-side secret is required.
