@@ -20,12 +20,10 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="content-page contact-page" id="main-content" tabIndex="-1">
+    <section className="content-page contact-page long-page__section" id="contact" tabIndex="-1">
       <PageIntro
-        eyebrow="Contact · 05"
-        title={<>Have a hard problem?<br />Let’s talk.</>}
-        copy="I am always open to thoughtful conversations around data products, AI systems, quantitative research, backend engineering and ambitious collaborations."
-        aside={<p className="aside-note">Best way to reach me: email. I usually reply within a couple of days.</p>}
+        eyebrow="Contact · 06"
+        copy="Email is the best way to reach me. I usually reply within a couple of days."
       />
 
       <section className="contact-layout">
@@ -42,16 +40,6 @@ export default function ContactPage() {
         </Reveal>
       </section>
 
-      <Reveal className="contact-prompts section-block">
-        <span className="eyebrow">Good conversation starters</span>
-        <div>
-          <span>Commodity &amp; maritime data</span>
-          <span>Agentic AI workflows</span>
-          <span>Quant research infrastructure</span>
-          <span>Backend systems</span>
-          <span>Product × engineering</span>
-        </div>
-      </Reveal>
-    </main>
+    </section>
   );
 }

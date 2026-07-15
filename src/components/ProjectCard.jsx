@@ -1,12 +1,11 @@
 import { ArrowUpRightIcon } from "./Icons";
 import ProjectArtwork from "./ProjectArtwork";
-import RouteLink from "./RouteLink";
 import TiltSurface from "./TiltSurface";
 
 export default function ProjectCard({ project, index = 0, compact = false }) {
   return (
     <TiltSurface className={`project-card ${compact ? "project-card--compact" : ""}`}>
-      <RouteLink to={`/work/${project.slug}`} className="project-card__link" aria-label={`View ${project.title} case study`}>
+      <a href={project.github} className="project-card__link" target="_blank" rel="noreferrer" aria-label={`View ${project.title} repository`}>
         <div className="project-card__meta">
           <span>{project.code}</span>
           <span>{project.category}</span>
@@ -21,7 +20,7 @@ export default function ProjectCard({ project, index = 0, compact = false }) {
           <span className="project-card__arrow"><ArrowUpRightIcon /></span>
         </div>
         {!compact ? <p className="project-card__description">{project.oneLiner}</p> : null}
-      </RouteLink>
+      </a>
     </TiltSurface>
   );
 }

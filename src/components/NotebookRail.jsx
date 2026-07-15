@@ -1,30 +1,35 @@
-import RouteLink from "./RouteLink";
-
 const railLinks = [
-  { number: "01", label: "About me", to: "/about" },
-  { number: "02", label: "Work", to: "/work" },
-  { number: "03", label: "Experience", to: "/experience" },
+  { number: "01", label: "Home", id: "home" },
+  { number: "02", label: "About me", id: "about" },
+  { number: "03", label: "Work", id: "work" },
+  { number: "04", label: "Experience", id: "experience" },
+  { number: "05", label: "Resume", id: "resume" },
+  { number: "06", label: "Contact", id: "contact" },
 ];
 
-export default function NotebookRail({ route }) {
+export default function NotebookRail({ activeSection, onNavigate }) {
   return (
-    <aside className="notebook-rail" aria-label="Featured sections">
+    <aside className="notebook-rail" aria-label="Portfolio sections">
       <div className="notebook-rail__binding" aria-hidden="true">
-        {Array.from({ length: 9 }, (_, index) => <i key={index} />)}
+        {Array.from({ length: 12 }, (_, index) => <i key={index} />)}
       </div>
       <nav>
         {railLinks.map((link) => {
-          const active = route === link.to || route.startsWith(`${link.to}/`);
+          const active = activeSection === link.id;
           return (
-            <RouteLink
+            <a
               className={`notebook-tab ${active ? "is-active" : ""}`}
-              key={link.to}
-              to={link.to}
-              aria-current={active ? "page" : undefined}
+              href={`#${link.id}`}
+              key={link.id}
+              onClick={(event) => {
+                event.preventDefault();
+                onNavigate(link.id);
+              }}
+              aria-current={active ? "location" : undefined}
             >
               <span>{link.number}</span>
               <strong>{link.label}</strong>
-            </RouteLink>
+            </a>
           );
         })}
       </nav>

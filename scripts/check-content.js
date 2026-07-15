@@ -77,6 +77,10 @@ const slugs = [...dataFile.matchAll(/slug:\s*"([^"]+)"/g)].map((match) => match[
 if (slugs.length !== 7) failures.push(`Expected 7 project slugs, found ${slugs.length}`);
 if (new Set(slugs).size !== slugs.length) failures.push("Duplicate project slug detected");
 
+const railFile = fs.readFileSync(path.join(root, "src", "components", "NotebookRail.jsx"), "utf8");
+const railPages = [...railFile.matchAll(/number:\s*"\d+"/g)];
+if (railPages.length !== 6) failures.push(`Expected 6 notebook rail pages, found ${railPages.length}`);
+
 const resumeSize = fs.existsSync(path.join(root, "public", "zhaoshizhen_resume.pdf"))
   ? fs.statSync(path.join(root, "public", "zhaoshizhen_resume.pdf")).size
   : 0;

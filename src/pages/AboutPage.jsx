@@ -1,44 +1,25 @@
-import portraitWebp from "../assets/portrait.webp";
-import portraitJpg from "../assets/portrait.jpg";
 import PageIntro from "../components/PageIntro";
 import Reveal from "../components/Reveal";
-import StatStrip from "../components/StatStrip";
-import TiltSurface from "../components/TiltSurface";
 import { achievements, certifications, education, interests, principles, profile, skillGroups } from "../data/portfolio";
 
 export default function AboutPage() {
   return (
-    <main className="content-page about-page" id="main-content" tabIndex="-1">
+    <section className="content-page about-page long-page__section" id="about" tabIndex="-1">
       <PageIntro
-        eyebrow="About · 01"
-        title={<>Curiosity is the<br />through-line.</>}
-        copy="I like problems that refuse to stay inside one discipline. My work moves between systems, markets, AI, data and product judgment."
-        aside={<p className="aside-note">Currently building client-facing commodity data solutions at Kpler while studying Computer Science and Quantitative Finance at NUS.</p>}
+        eyebrow="About · 02"
       />
 
-      <section className="about-opening section-grid">
+      <section className="about-opening about-opening--single">
         <Reveal className="about-opening__statement glass-panel">
           <span className="eyebrow">In my own words</span>
           <p>{profile.longIntroduction}</p>
-          <p>I care about making technically ambitious work understandable, operable and genuinely useful beyond a demo.</p>
-        </Reveal>
-        <Reveal className="about-opening__portrait" delay={100}>
-          <TiltSurface className="about-portrait-card">
-            <picture>
-              <source srcSet={portraitWebp} type="image/webp" />
-              <img src={portraitJpg} alt="Zhao Shizhen in Tokyo" />
-            </picture>
-            <div><span>Based in</span><strong>Singapore</strong></div>
-          </TiltSurface>
+          <p>I make technically ambitious work understandable, operable and useful beyond a demo.</p>
         </Reveal>
       </section>
-
-      <StatStrip />
 
       <section className="section-block">
         <Reveal className="section-heading-row">
           <div><span className="eyebrow">How I work</span><h2>Three operating principles.</h2></div>
-          <p>Not rules. More like useful defaults.</p>
         </Reveal>
         <div className="principles-grid">
           {principles.map((principle, index) => (
@@ -54,7 +35,6 @@ export default function AboutPage() {
       <section className="section-block certification-section">
         <Reveal className="section-heading-row">
           <div><span className="eyebrow">Continued learning</span><h2>Credentials, with receipts.</h2></div>
-          <p>Selected public credentials verified from LinkedIn and linked to their issuers.</p>
         </Reveal>
         <div className="certification-list">
           {certifications.map((certificate, index) => (
@@ -95,7 +75,6 @@ export default function AboutPage() {
       <section className="section-block">
         <Reveal className="section-heading-row">
           <div><span className="eyebrow">Toolbox</span><h2>Skills, organised by use.</h2></div>
-          <p>I choose tools around the problem, not the other way around.</p>
         </Reveal>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
@@ -116,6 +95,6 @@ export default function AboutPage() {
           {interests.map((interest, index) => <span key={interest}><small>0{index + 1}</small>{interest}</span>)}
         </Reveal>
       </section>
-    </main>
+    </section>
   );
 }

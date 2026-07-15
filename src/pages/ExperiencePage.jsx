@@ -1,15 +1,12 @@
 import PageIntro from "../components/PageIntro";
 import Reveal from "../components/Reveal";
-import { achievements, experiences, hackathon } from "../data/portfolio";
+import { experiences, hackathon } from "../data/portfolio";
 
 export default function ExperiencePage() {
   return (
-    <main className="content-page experience-page" id="main-content" tabIndex="-1">
+    <section className="content-page experience-page long-page__section" id="experience" tabIndex="-1">
       <PageIntro
-        eyebrow="Experience · 03"
-        title={<>Close to users.<br />Deep in the system.</>}
-        copy="I am happiest where technical depth and real-world delivery overlap — turning vague needs into systems people can actually use."
-        aside={<p className="aside-note">Across data, ML and product roles, the recurring theme has been ownership from problem framing to implementation and delivery.</p>}
+        eyebrow="Experience · 04"
       />
 
       <section className="experience-timeline">
@@ -48,16 +45,6 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      <section className="recognition-band section-block glass-panel">
-        <Reveal><span className="eyebrow">Recognition</span><h2>Signals along the way.</h2></Reveal>
-        <div>
-          {achievements.map((achievement) => (
-            <Reveal className="recognition-band__row" key={achievement.title}>
-              <span>{achievement.code}</span><strong>{achievement.title}</strong><p>{achievement.detail}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    </main>
+    </section>
   );
 }

@@ -2,7 +2,7 @@
 
 ## Visual thesis
 
-A tactile digital field notebook that presents systems engineering, quantitative work, and machine learning through disciplined editorial typography, archival paper, cobalt binding, and animated registration marks.
+A tactile digital field notebook that presents systems engineering, quantitative work, and machine learning through disciplined editorial typography, archival paper, and a cobalt binding.
 
 ## Design DNA
 
@@ -11,15 +11,14 @@ A tactile digital field notebook that presents systems engineering, quantitative
 - **Typography:** high-contrast serif for names and statements; restrained sans serif for UI, data, and long-form reading.
 - **Color:** ivory `#f2eee5`, ink `#181b24`, navy `#102e63`, deep navy `#0b244f`, red `#f14c45`.
 - **Container model:** open bands and ruled lists first; paper sheets only for dense case-study or form content; no default rounded-card grid.
-- **Signature behavior:** notebook index tabs slide from the bound rail while the portrait cutout gently responds to the pointer.
+- **Signature behavior:** six notebook index tabs remain fixed within the viewport while the portrait cutout gently responds to the pointer.
 
 ## Motion grammar
 
 - Names reveal through clipping and vertical movement.
-- Rules draw from left to right.
 - Content enters through transform and opacity only.
 - Cards lift no more than five pixels; arrows travel horizontally to show direction.
-- Route changes use a short page-mask entrance.
+- Section tabs use native smooth scrolling and update the active hash state.
 - Pointer tilt is subtle and disabled for touch input.
 - `prefers-reduced-motion` removes decorative motion and preserves content immediately.
 
@@ -29,7 +28,7 @@ The portrait is cut into an irregular paper silhouette and placed over a rigid c
 
 ## Responsive behavior
 
-- Desktop uses the bound rail, full navigation, wide name/portrait spread, and a four-column gateway index.
-- Tablet removes the bound rail, retains the full composition, and moves gateways to two columns.
-- Mobile becomes a vertical editorial sequence: name, portrait, gateway rows, then the contact action.
+- Desktop uses the fixed six-tab bound rail and a wide name/portrait spread.
+- Tablet removes the bound rail and retains the full composition.
+- Mobile becomes one continuous vertical editorial sequence.
 - Expensive pointer and tilt effects are disabled on touch devices.
